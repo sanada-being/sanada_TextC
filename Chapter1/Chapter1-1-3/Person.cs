@@ -1,20 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Chapter1_1_3 {
+    /// <summary>
+    /// 人間クラス
+    /// </summary>
     internal class Person {
-        public String Name { get; set; }
+
+        /// <summary>
+        /// 名前を取得、設定する。
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 誕生日を取得、設定する。
+        /// </summary>
         public DateTime Birthday { get; set; }
+
+        /// <summary>
+        /// 年齢を取得する。
+        /// </summary>
+        /// <returns>年齢を整数値で返す。</returns>
         public int GetAge() {
             DateTime wToday = DateTime.Today;
             int wAge = wToday.Year - Birthday.Year;
-            if (wToday < Birthday.AddYears(wAge))
-                wAge--;
+            if (wToday < Birthday.AddYears(wAge)) wAge--;
             return wAge;
         }
-
+        /// <summary>
+        /// 誕生日をyyyy/MM/ddで表示する。
+        /// </summary>
+        /// <returns>誕生日をyyyy/MM/dd表示にして返す。</returns>
+        public string GetBirthdayFormat() {
+            return Birthday.ToString("yyyy/MM/dd");
+        }
     }
 }

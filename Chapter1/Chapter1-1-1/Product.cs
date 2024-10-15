@@ -1,29 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-///3.で名前空間を変更
+﻿/// 3.で名前空間を変更
 namespace Chapter1_1_1change {
+    /// <summary>
+    /// 商品クラス
+    /// </summary>
     internal class Product {
-        //「1-1クラス」で定義したProductクラス
+
+        /// <summary>
+        /// 商品コード
+        /// </summary>
         public int Code { get; private set; }
+
+        /// <summary>
+        /// 商品名
+        /// </summary>
         public string Name { get; private set; }
+
+        /// <summary>
+        /// 商品の金額
+        /// </summary>
         public int Price { get; private set; }
 
-        //コンストラクタ
+        ///  <summary>
+        /// 商品情報初期化のためのコンストラクタ
+        /// </summary>
+        /// <param name="vCode">商品コードを示す整数値。</param>
+        /// <param name="vName">商品名を表す文字列。</param>
+        /// <param name="vPrice">商品名の価格を表す整数値。</param>
         public Product(int vCode, string vName, int vPrice) {
             this.Code = vCode;
             this.Name = vName;
             this.Price = vPrice;
         }
 
-        //消費税額を求める
+        /// <summary>
+        /// 商品価格に対する税額を取得。
+        /// 税率は8%で計算。
+        /// </summary>
+        /// <returns>税額を整数値で返す。</returns>
         public int GetTax() {
             return (int)(Price * 0.08);
         }
 
-        //税込金額を表示する
+        /// <summary>
+        /// 商品の税込金額を取得。
+        /// </summary>
+        /// <returns>税込金額を整数値で返す。</returns>
         public int GetPriceIncludingTax() {
             return Price + GetTax();
         }
