@@ -27,9 +27,9 @@ namespace Chapter2_1_1 {
         /// <param name="vArtistname">アーティスト名</param>
         /// <param name="vLength">曲の長さ</param>
         public Song(string vTitle, string vArtistname, int vLength) {
-            Title = vTitle;
-            ArtistName = vArtistname;
-            Length = vLength;
+            this.Title = vTitle;
+            this.ArtistName = vArtistname;
+            this.Length = vLength;
         }
     }
 }

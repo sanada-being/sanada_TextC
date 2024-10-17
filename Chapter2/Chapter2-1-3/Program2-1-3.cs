@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Chapter2_1_3 {
     internal class Program {
         // 3. 「2.2:売り上げ集計プログラム」で作成したプログラムを変更し、

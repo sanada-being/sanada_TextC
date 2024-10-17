@@ -1,16 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+
 namespace Chapter2_1_3 {
-    //売上集計クラス
+    /// <summary>
+    /// 売上集計クラス
+    /// </summary>
     public class SalesCounter {
-        private IEnumerable<Sale> _sales;
+        private IEnumerable<Sale> FSales;
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
         /// <param name="vFilepath">ファイルのパス</param>
         public SalesCounter(string vFilepath) {
-            _sales = ReadSales(vFilepath);
+            FSales = ReadSales(vFilepath);
         }
 
         /// <summary>
@@ -23,11 +26,7 @@ namespace Chapter2_1_3 {
             var wLines = File.ReadAllLines(vFilepath);
             foreach (var wLine in wLines) {
                 var wItems = wLine.Split(',');
-                var wSale = new Sale {
-                    ShopName = wItems[0],
-                    ProductCategory = wItems[1],
-                    Amount = int.Parse(wItems[2])
-                };
+                var wSale = new Sale(wItems[0], wItems[1], int.Parse(wItems[2]));
                 wSales.Add(wSale);
             }
             return wSales;
@@ -38,13 +37,13 @@ namespace Chapter2_1_3 {
         /// </summary>
         /// <returns>商品別の売上を返す</returns>
         public IDictionary<string, int> GetPerProductCategorySales() {
-            var wDict = new Dictionary<string, int>();
-            foreach (var wSale in _sales) {
-                if (wDict.ContainsKey(wSale.ProductCategory))
-                    wDict[wSale.ProductCategory] += wSale.Amount;
-                else wDict[wSale.ProductCategory] = wSale.Amount;
+            var wProductCategorySales = new Dictionary<string, int>();
+            foreach (var wSale in FSales) {
+                if (wProductCategorySales.ContainsKey(wSale.ProductCategory))
+                    wProductCategorySales[wSale.ProductCategory] += wSale.Amount;
+                else wProductCategorySales[wSale.ProductCategory] = wSale.Amount;
             }
-            return wDict;
+            return wProductCategorySales;
         }
     }
 }
