@@ -1,5 +1,4 @@
 ﻿namespace Chapter1_1_2 {
-
     /// <summary>
     /// XとYの値を持つ構造体
     /// </summary>

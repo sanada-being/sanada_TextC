@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Chapter1_1_3 {
     // 「1.6：継承」で示したPersonクラスを使い、以下のコードを書いてください。
 
@@ -15,7 +16,7 @@ namespace Chapter1_1_3 {
     internal class Program {
         static void Main(string[] args) {
 
-            //  2.　コンストラクタを元にプロパティに値を入れたインスタンスを生成するコード
+            // 2.コンストラクタを元にプロパティに値を入れたインスタンスを生成するコード
             Student wStudent1 = new Student("Akbar Shah Sanada", new DateTime(2001, 11, 13), 6, 1);
 
             int wAge = wStudent1.GetAge();

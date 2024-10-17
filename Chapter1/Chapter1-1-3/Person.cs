@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Chapter1_1_3 {
     /// <summary>
     /// 人間クラス
@@ -18,7 +19,7 @@ namespace Chapter1_1_3 {
         /// <summary>
         /// 年齢を取得する。
         /// </summary>
-        /// <returns>年齢を整数値で返す。</returns>
+        /// <returns>年齢を返す</returns>
         public int GetAge() {
             DateTime wToday = DateTime.Today;
             int wAge = wToday.Year - this.Birthday.Year;
