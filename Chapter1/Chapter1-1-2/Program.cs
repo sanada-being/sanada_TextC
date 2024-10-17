@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Chapter1_1_2 {
     // 「1.2：構造体」で定義したMyClassとMyStructの２つを使い、以下のコードを書いてください
 

@@ -25,10 +25,10 @@ namespace Chapter1_1_3 {
         /// <param name="vGrade">学年</param>
         /// <param name="vClassNumber">クラス番号</param>
         public Student(string vName, DateTime vBirthday, int vGrade, int vClassNumber) {
-            Name = vName;
-            Birthday = vBirthday;
-            Grade = vGrade;
-            ClassNumber = vClassNumber;
+            this.Name = vName;
+            this.Birthday = vBirthday;
+            this.Grade = vGrade;
+            this.ClassNumber = vClassNumber;
         }
     }
 }

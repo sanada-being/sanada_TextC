@@ -21,8 +21,8 @@ namespace Chapter1_1_3 {
         /// <returns>年齢を整数値で返す。</returns>
         public int GetAge() {
             DateTime wToday = DateTime.Today;
-            int wAge = wToday.Year - Birthday.Year;
-            if (wToday < Birthday.AddYears(wAge)) wAge--;
+            int wAge = wToday.Year - this.Birthday.Year;
+            if (wToday < this.Birthday.AddYears(wAge)) wAge--;
             return wAge;
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Chapter1_1_3 {
         /// </summary>
         /// <returns>誕生日をyyyy/MM/dd表示にして返す。</returns>
         public string GetBirthdayFormat() {
-            return Birthday.ToString("yyyy/MM/dd");
+            return this.Birthday.ToString("yyyy/MM/dd");
         }
     }
 }
