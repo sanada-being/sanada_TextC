@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Chapter4_1_1 {
     /// <summary>
@@ -14,15 +9,14 @@ namespace Chapter4_1_1 {
         //   2つのプロパティは読み取り専用にし、値はコンストラクタで指定出来るようにしてください。
 
         /// <summary>
-        /// 年を取得
+        /// 年
         /// </summary>
 
         public int Year { get; }
         /// <summary>
-        /// 月を取得
+        /// 月
         /// </summary>
         public int Month { get; }
-
 
         /// <summary>
         /// コンストラクタ
@@ -31,14 +25,13 @@ namespace Chapter4_1_1 {
         /// <param name="vMonth">月</param>
         /// <exception cref="ArgumentOutOfRangeException">1～12以外だと例外になる</exception>
         public YearMonth(int vYear, int vMonth) {
-            if (1 <= vMonth || vMonth <= 12) {
+            if (1 > vMonth || vMonth > 12) {
                 throw new ArgumentOutOfRangeException(nameof(vMonth), "月は1から12の範囲で指定してください。");
             }
 
             this.Year = vYear;
             this.Month = vMonth;
         }
-
         // 2. YearMonthクラスに、Is21Centuryプロパティを追加してください。
         //    2001年から2100年までが21世紀です。
         //    この処理では加減乗除はしないでください。
@@ -61,14 +54,14 @@ namespace Chapter4_1_1 {
             if (Month == 12) {
                 return new YearMonth(Year + 1, 1);
             } else {
-                return new YearMonth(Year + 1, Month + 1);
+                return new YearMonth(Year, Month + 1);
             }
         }
 
         //4. ToStringメソッドをオーバーライドしてください。
         //   結果は"2017年8月"といった形式にしてください。
         /// <summary>
-        /// yyyy年dd日で表示メソッド
+        /// yyyy年dd日で表示
         /// </summary>
         /// <returns>yyyy年dd表示で返す</returns>
         public override string ToString() {

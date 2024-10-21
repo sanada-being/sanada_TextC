@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Chapter4_1_2 {
     internal class Program {
@@ -25,6 +22,51 @@ namespace Chapter4_1_2 {
            LINQを使えるところはLINQを使って実装してください。
         */
         static void Main(string[] args) {
+
+            // 1.
+            YearMonth[] wYearMonths1 = {
+              new YearMonth(2001, 1),
+              new YearMonth(2010, 3),
+              new YearMonth(2090, 5),
+              new YearMonth(2150, 8),
+              new YearMonth(2024, 12),
+            };
+            // 2.
+            Console.WriteLine("問題2");
+            foreach (var wYear1Month in wYearMonths1) {
+                Console.WriteLine(wYear1Month);
+            }
+            // 4.
+            Console.WriteLine("問題4");
+            YearMonth wFirst21Century = FindFirst21Century(wYearMonths1);
+            if (wFirst21Century == null) {
+                Console.WriteLine("21世紀のデータはありません");
+            } else {
+                Console.WriteLine(wFirst21Century);
+            }
+            // 5.
+            Console.WriteLine("問題5");
+            YearMonth[] wNextMonthYearMonths = wYearMonths1
+                .Select(yearMonth => yearMonth.AddOneMonth())
+                .ToArray();
+
+            foreach (var wAdd1Month in wNextMonthYearMonths) {
+                Console.WriteLine(wAdd1Month);
+            }
+        }
+        // 3.
+        /// <summary>
+        /// 最初の21世紀のオブジェクトを探す
+        /// </summary>
+        /// <param name="vYearMonths">YearMonthの配列</param>
+        /// <returns>最初の21世紀のオブジェクト</returns>
+        static YearMonth FindFirst21Century(YearMonth[] vYearMonths) {
+            foreach (var w21YearMonth in vYearMonths) {
+                if (w21YearMonth.Is21Century) {
+                    return w21YearMonth;
+                }
+            }
+            return null;
         }
     }
 }

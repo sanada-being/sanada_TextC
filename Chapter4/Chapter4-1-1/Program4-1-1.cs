@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Chapter4_1_1 {
+﻿namespace Chapter4_1_1 {
     internal class Program {
         /* 問題4.1
            以下の順にyearMonthクラスを定義してください。本章で学んだイディオムが使えるところは
