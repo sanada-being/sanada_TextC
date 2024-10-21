@@ -26,15 +26,15 @@ namespace Chapter3_1_2 {
         */
         static void Main(string[] args) {
             var wNames = new List<string> {
-        "Tokyo","New Delhi","Bangkok","London","Paris","Berlin","Canberra","Hongkong",};
+        "Tokyo", "New Delhi", "Bangkok", "London", "Paris", "Berlin", "Canberra", "Hongkong", };
 
             // 1.FindIndexメソッドを使い、コンソールに入力した都市名が何番目に格納されているのかを出力
             //   見つからなかったら"その都市名は存在しません"と入力
             Console.WriteLine("問題1  都市名を入力");
             var wLine = Console.ReadLine();
-
-            if (wNames.FindIndex(x => x == wLine) >= 0) {
-                Console.WriteLine(wNames.FindIndex(x => x == wLine));
+            var wIndex = wNames.FindIndex(x => x == wLine);
+            if (wIndex >= 0) {
+                Console.WriteLine(wIndex);
             } else {
                 Console.WriteLine("その都市名は存在しません");
             }
