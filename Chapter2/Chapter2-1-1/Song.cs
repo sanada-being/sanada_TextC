@@ -24,11 +24,11 @@ namespace Chapter2_1_1 {
         /// コンストラクタ
         /// </summary>
         /// <param name="vTitle">曲名</param>
-        /// <param name="vArtistname">アーティスト名</param>
+        /// <param name="vArtistName">アーティスト名</param>
         /// <param name="vLength">曲の長さ</param>
-        public Song(string vTitle, string vArtistname, int vLength) {
+        public Song(string vTitle, string vArtistName, int vLength) {
             this.Title = vTitle;
-            this.ArtistName = vArtistname;
+            this.ArtistName = vArtistName;
             this.Length = vLength;
         }
     }

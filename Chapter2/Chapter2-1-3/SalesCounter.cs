@@ -23,8 +23,7 @@ namespace Chapter2_1_3 {
         /// <returns>Saleオブジェクトのリスト</returns>
         private static IEnumerable<Sale> ReadSales(string vFilepath) {
             var wSales = new List<Sale>();
-            var wLines = File.ReadAllLines(vFilepath);
-            foreach (var wLine in wLines) {
+            foreach (var wLine in File.ReadAllLines(vFilepath)) {
                 var wItems = wLine.Split(',');
                 var wSale = new Sale(wItems[0], wItems[1], int.Parse(wItems[2]));
                 wSales.Add(wSale);

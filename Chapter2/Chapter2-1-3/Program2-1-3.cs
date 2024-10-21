@@ -7,8 +7,7 @@ namespace Chapter2_1_3 {
 
         static void Main(string[] args) {
             var wSales = new SalesCounter("..\\..\\sales.csv");
-            var wAmountPerStore = wSales.GetPerProductCategorySales();
-            foreach (var wObj in wAmountPerStore) {
+            foreach (var wObj in wSales.GetPerProductCategorySales()) {
                 Console.WriteLine($"{wObj.Key}{wObj.Value}");
             }
         }

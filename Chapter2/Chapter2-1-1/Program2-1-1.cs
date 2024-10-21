@@ -35,7 +35,6 @@ namespace Chapter2_1_1 {
 
             // コンソールにSongオブジェクトの内容を表示
             foreach (var wSong in wSongs) {
-                TimeSpan wDuaration = new TimeSpan(0, 0, wSong.Length);
                 Console.WriteLine($"{wSong.Title}は{wSong.ArtistName}の曲です。曲の長さは{new TimeSpan(0, 0, wSong.Length).ToString(@"mm\:ss")}秒です");
             }
         }
