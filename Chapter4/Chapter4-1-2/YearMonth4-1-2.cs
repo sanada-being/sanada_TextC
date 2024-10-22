@@ -47,10 +47,10 @@ namespace Chapter4_1_2 {
         /// </summary>
         /// <returns>月に１を足して返す,　12月の場合は翌年の1月を返す</returns>
         public YearMonth AddOneMonth() {
-            if (Month == 12) {
+            if (this.Month == 12) {
                 return new YearMonth(this.Year + 1, 1);
             } else {
-                return new YearMonth(this.Year, Month + 1);
+                return new YearMonth(this.Year, this.Month + 1);
             }
         }
 

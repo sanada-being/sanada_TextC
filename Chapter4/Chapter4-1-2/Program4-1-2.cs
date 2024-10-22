@@ -46,7 +46,7 @@ namespace Chapter4_1_2 {
 
             // 追加修正. 月は使わないように1行で記述
             Console.WriteLine("追加課題");
-            Console.WriteLine(FindFirst21Century(wYearMonths)?.Year + "年" ?? "21世紀のデータはありません");
+            Console.WriteLine(FindFirst21Century(wYearMonths)?.Year.ToString("0年") ?? "21世紀のデータはありません");
 
             // 5.
             Console.WriteLine("問題5");
