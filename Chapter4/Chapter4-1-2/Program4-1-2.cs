@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Chapter4_1_2 {
@@ -9,9 +10,9 @@ namespace Chapter4_1_2 {
 
         1. YearMonthを要素に持つ配列を定義し、初期値として5つのYearMonthを定義してください。
 
-        2. この配列の要素（YearMonthオブジェクトを全て列挙し、その値をコンソールに出力してください。
+        2. この配列の要素（YearMonthオブジェクト)を全て列挙し、その値をコンソールに出力してください。
 
-        3. 配列の中の最初に見つかった21世紀のyearMonthオブジェクトを返すメソッドを書いてください。
+        3. 配列の中の最初に見つかった21世紀のYearMonthオブジェクトを返すメソッドを書いてください。
            見つからなかった場合は、nullを返してください。foreach文を使って実装してください。
 
         4. 3で作成したメソッドを呼び出し、最初に見つかった21世紀のデータの年を表示してください。
@@ -24,7 +25,7 @@ namespace Chapter4_1_2 {
         static void Main(string[] args) {
 
             // 1.
-            YearMonth[] wYearMonths1 = {
+            YearMonth[] wYearMonths = {
               new YearMonth(2001, 1),
               new YearMonth(2010, 3),
               new YearMonth(2090, 5),
@@ -33,25 +34,21 @@ namespace Chapter4_1_2 {
             };
             // 2.
             Console.WriteLine("問題2");
-            foreach (var wYear1Month in wYearMonths1) {
-                Console.WriteLine(wYear1Month);
+            foreach (var wYearMonth in wYearMonths) {
+                Console.WriteLine(wYearMonth);
             }
             // 4.
+            //三項演算子を使って書き換え
             Console.WriteLine("問題4");
-            YearMonth wFirst21Century = FindFirst21Century(wYearMonths1);
-            if (wFirst21Century == null) {
-                Console.WriteLine("21世紀のデータはありません");
-            } else {
-                Console.WriteLine(wFirst21Century);
-            }
+            YearMonth wFirst21Century = FindFirst21Century(wYearMonths);
+            Console.WriteLine(wFirst21Century == null ? "21世紀のデータはありません" : wFirst21Century.ToString());
+
             // 5.
             Console.WriteLine("問題5");
-            YearMonth[] wNextMonthYearMonths = wYearMonths1
-                .Select(yearMonth => yearMonth.AddOneMonth())
-                .ToArray();
+            YearMonth[] wNextMonthYearMonths = wYearMonths.Select(x => x.AddOneMonth()).ToArray();
 
-            foreach (var wAdd1Month in wNextMonthYearMonths) {
-                Console.WriteLine(wAdd1Month);
+            foreach (var wOneMonthAfter in wNextMonthYearMonths) {
+                Console.WriteLine(wOneMonthAfter);
             }
         }
         // 3.
@@ -60,13 +57,8 @@ namespace Chapter4_1_2 {
         /// </summary>
         /// <param name="vYearMonths">YearMonthの配列</param>
         /// <returns>最初の21世紀のオブジェクト</returns>
-        static YearMonth FindFirst21Century(YearMonth[] vYearMonths) {
-            foreach (var w21YearMonth in vYearMonths) {
-                if (w21YearMonth.Is21Century) {
-                    return w21YearMonth;
-                }
-            }
-            return null;
+        static YearMonth FindFirst21Century(IEnumerable<YearMonth> vYearMonths) {
+            return vYearMonths.FirstOrDefault(x => x.Is21Century);
         }
     }
 }

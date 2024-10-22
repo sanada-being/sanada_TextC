@@ -25,7 +25,7 @@ namespace Chapter4_1_2 {
         /// <param name="vMonth">月</param>
         /// <exception cref="ArgumentOutOfRangeException">1～12以外だと例外になる</exception>
         public YearMonth(int vYear, int vMonth) {
-            if (1 > vMonth || vMonth > 12) {
+            if (vMonth < 1 || 12 < vMonth) {
                 throw new ArgumentOutOfRangeException(nameof(vMonth), "月は1から12の範囲で指定してください。");
             }
 
@@ -39,11 +39,7 @@ namespace Chapter4_1_2 {
         /// <summary>
         /// 21世紀かを判定
         /// </summary>
-        public bool Is21Century {
-            get {
-                return 2001 <= Year && Year <= 2100;
-            }
-        }
+        public bool Is21Century => 2001 <= this.Year && this.Year <= 2100;
 
         // 3. YearMonthクラスに、1ヶ月を求めるAddOneMonthメソッドを追加
         /// <summary>
