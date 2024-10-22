@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 
 namespace Chapter4_1_2 {
     internal class Program {
@@ -38,10 +39,14 @@ namespace Chapter4_1_2 {
                 Console.WriteLine(wYearMonth);
             }
             // 4.
-            //三項演算子を使って書き換え
+            // 三項演算子を使って書き換え
             Console.WriteLine("問題4");
             YearMonth wFirst21Century = FindFirst21Century(wYearMonths);
             Console.WriteLine(wFirst21Century == null ? "21世紀のデータはありません" : wFirst21Century.ToString());
+
+            // 追加修正. 月は使わないように1行で記述
+            Console.WriteLine("追加課題");
+            Console.WriteLine(FindFirst21Century(wYearMonths)?.Year + "年" ?? "21世紀のデータはありません");
 
             // 5.
             Console.WriteLine("問題5");

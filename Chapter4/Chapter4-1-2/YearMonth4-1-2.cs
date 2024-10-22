@@ -48,20 +48,20 @@ namespace Chapter4_1_2 {
         /// <returns>月に１を足して返す,　12月の場合は翌年の1月を返す</returns>
         public YearMonth AddOneMonth() {
             if (Month == 12) {
-                return new YearMonth(Year + 1, 1);
+                return new YearMonth(this.Year + 1, 1);
             } else {
-                return new YearMonth(Year, Month + 1);
+                return new YearMonth(this.Year, Month + 1);
             }
         }
 
         //4. ToStringメソッドをオーバーライドしてください。
         //   結果は"2017年8月"といった形式にしてください。
         /// <summary>
-        /// yyyy年dd日で表示メソッド
+        /// yyyy年M月で表示メソッド
         /// </summary>
-        /// <returns>yyyy年dd表示で返す</returns>
+        /// <returns>yyyy年M月表示で返す</returns>
         public override string ToString() {
-            return $"{Year}年{Month}月";
+            return $"{this.Year}年{this.Month}月";
         }
     }
 }
