@@ -75,8 +75,7 @@ namespace Program6_1_2 {
 
             // 6. 
             Console.WriteLine("問題6");
-            var w400PageOrMoreBook = wBooks.Where(x => x.Pages >= 400).OrderByDescending(x => x.Price).ToList();
-            w400PageOrMoreBook.ForEach(x => Console.WriteLine($"書籍名: {x.Title},　価格: {x.Price}円"));
+            wBooks.Where(x => x.Pages >= 400).OrderByDescending(x => x.Price).ToList().ForEach(x => Console.WriteLine($"書籍名: {x.Title},　価格: {x.Price}円"));
 
             // 7.
             Console.WriteLine("問題7");
