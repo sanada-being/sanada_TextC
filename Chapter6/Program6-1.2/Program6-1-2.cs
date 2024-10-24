@@ -58,7 +58,7 @@ namespace Program6_1_2 {
 
             // 3.
             Console.WriteLine("問題3");
-            Console.WriteLine(wBooks.Where(x => x.Title.Contains("C#")).Average(x => x.Pages));
+            Console.WriteLine(wBooks.Where(x => x.Title.Contains("C#")).Average(y => y.Pages));
 
             // 4.
             Console.WriteLine("問題4");
@@ -71,16 +71,15 @@ namespace Program6_1_2 {
 
             // 5.
             Console.WriteLine("問題5");
-            Console.WriteLine(wBooks.Where(x => x.Price <= 4000).Max(x => x.Pages) + "ページ");
+            Console.WriteLine(wBooks.Where(x => x.Price <= 4000).Max(y => y.Pages) + "ページ");
 
             // 6. 
             Console.WriteLine("問題6");
-            wBooks.Where(x => x.Pages >= 400).OrderByDescending(x => x.Price).ToList().ForEach(x => Console.WriteLine($"書籍名: {x.Title},　価格: {x.Price}円"));
+            wBooks.Where(x => x.Pages >= 400).OrderByDescending(x => x.Price).ToList().ForEach(y => Console.WriteLine($"書籍名: {y.Title},　価格: {y.Price}円"));
 
             // 7.
             Console.WriteLine("問題7");
-            var w500pageOrLessCSharpBook = wBooks.Where(x => x.Title.Contains("C#") && x.Pages <= 500).ToList();
-            w500pageOrLessCSharpBook.ForEach(x => Console.WriteLine($"書籍名: {x.Title}"));
+            wBooks.Where(x => x.Title.Contains("C#") && x.Pages <= 500).ToList().ForEach(y => Console.WriteLine($"書籍名: {y.Title}"));
         }
     }
 }
