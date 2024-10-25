@@ -10,13 +10,26 @@ namespace Chapter5_1_1 {
         static void Main(string[] args) {
             Console.WriteLine("1つ目の文字列を入力してください");
             string wWords1 = Console.ReadLine();
+            if (String.IsNullOrWhiteSpace(wWords1)) {
+                Console.WriteLine("正しい文字列を入力してください");
+                return;
+            } else {
+                Console.WriteLine("1つめの文字列:" + wWords1);
+            }
 
             Console.WriteLine("2つ目の文字列を入力してください");
             string wWords2 = Console.ReadLine();
+            if (String.IsNullOrWhiteSpace(wWords2)) {
+                Console.WriteLine("正しい文字列を入力してください");
+                return;
+            } else {
+                Console.WriteLine("2つめの文字列:" + wWords2);
+            }
+
             if (string.Compare(wWords1, wWords2, ignoreCase: true) == 0) {
                 Console.WriteLine("これらの文字列は等しいです");
             } else {
-                Console.WriteLine("これらの文字列は等しくありません。");
+                Console.WriteLine("これらの文字列は等しくありません");
             }
         }
     }

@@ -22,8 +22,9 @@ namespace Chapter5_1_3 {
         static void Main(string[] args) {
             // 1.
             Console.WriteLine("問題1");
-            string wSentence = "Jackdaws love my big sphinx of quartz";
-            Console.WriteLine("空白の数は" + wSentence.Count(x => x == ' '));
+            var wSentence = "Jackdaws love my big sphinx of quartz";
+            Console.WriteLine("空白の数は" + wSentence.Count(char.IsWhiteSpace));
+
             // 2.
             Console.WriteLine("問題2");
             Console.WriteLine(wSentence.Replace("big", "small"));
@@ -35,14 +36,12 @@ namespace Chapter5_1_3 {
 
             // 4.
             Console.WriteLine("問題4");
-            var w4UnderWords = wSentence.Split(' ').Where(x => x.Length <= 4).ToArray();
-
-            foreach (var wWord in w4UnderWords) {
+            foreach (var wWord in wWords.Where(x => x.Length <= 4).ToArray()) {
                 Console.WriteLine(wWord);
             }
             // 5.
             Console.WriteLine("問題5");
-            var wConnectedWords = new StringBuilder();
+           var wConnectedWords = new StringBuilder();
             foreach (var wWord in wWords) {
                 wConnectedWords.Append(wWord);
             }
