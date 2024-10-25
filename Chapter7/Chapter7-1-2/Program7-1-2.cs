@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Chapter7_1_2 {
     internal class Program {
         /*
-        「7.3:ディクショナリえお使ったサンプルプログラム」で作成したプログラムに、以下の機能を追加してください。
+        「7.3:ディクショナリを使ったサンプルプログラム」で作成したプログラムに、以下の機能を追加してください。
 
         1. ディクショナリに登録されている用語の数を返すCountプロパティをAbbreviationsクラスに追加してください。
 
