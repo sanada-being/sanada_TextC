@@ -14,7 +14,7 @@
         /// <summary>
         /// 書籍のページ数
         /// </summary>
-        public int Pages { get; set; }
+        public int PageCount { get; set; }
     }
 }
 

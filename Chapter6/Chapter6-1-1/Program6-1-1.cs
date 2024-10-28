@@ -22,26 +22,60 @@ namespace Chapter6_1_1 {
             // 1.
             Console.WriteLine("問題1");
             var wNumbers = new int[] { 5, 10, 17, 9, 3, 21, 10, 40, 21, 3, 35 };
-            Console.WriteLine(wNumbers.Where(x => x > 0).Max());
+
+            if (wNumbers == null) {
+                Console.WriteLine("配列が存在しません");
+            } else if (wNumbers.Length == 0 || !wNumbers.Any(x => x > 0)) {
+                Console.WriteLine("要素がありません");
+            } else {
+                Console.WriteLine(wNumbers.Where(x => x > 0).Max());
+            }
 
             // 2.
             Console.WriteLine("問題2");
-            Console.WriteLine(wNumbers.Skip(wNumbers.Length - 2).FirstOrDefault());
-
+            if (wNumbers == null) {
+                Console.WriteLine("配列が存在しません");
+            } else if (wNumbers.Length == 0) {
+                Console.WriteLine("配列の要素はありません");
+            } else if (wNumbers.Length <= 2) {
+                Console.WriteLine("配列の要素は2以下なので、最初の要素が出力されます");
+                Console.WriteLine(wNumbers.FirstOrDefault());
+            } else {
+                Console.WriteLine("最後から2個目の要素は" + wNumbers.Skip(wNumbers.Length - 2).FirstOrDefault());
+            }
             // 3.
+
             Console.WriteLine("問題3");
-            var wStringNumbers = wNumbers.Select(x => x.ToString()).ToArray();
-            Console.WriteLine(string.Join(", ", wStringNumbers));
+            if (wNumbers == null) {
+                Console.WriteLine("配列が null です");
+            } else if (wNumbers.Length == 0) {
+                Console.WriteLine("配列に要素がありません");
+            } else {
+                var wStringNumbers = wNumbers.Select(x => x.ToString());
+                Console.WriteLine(string.Join(", ", wStringNumbers));
+            }
 
             // 4.
             Console.WriteLine("問題4");
-            var wThreeNumber = wNumbers.OrderBy(x => x).Where(y => y > 0).Take(3).ToArray();
-            Console.WriteLine(string.Join(",", wThreeNumber));
+            if (wNumbers == null) {
+                Console.WriteLine("配列が null です");
+            } else if (wNumbers.Length == 0) {
+                Console.WriteLine("配列に要素がありません");
+            } else {
+                var wThreeNumber = wNumbers.OrderBy(x => x).Where(y => y > 0).Take(3);
+                Console.WriteLine(string.Join(",", wThreeNumber));
+            }
 
             // 5.
             Console.WriteLine("問題5");
-            var wBigerThanTen = wNumbers.Distinct().Count(x => x > 10);
-            Console.WriteLine(wBigerThanTen);
+            if (wNumbers == null) {
+                Console.WriteLine("配列が null です");
+            } else if (wNumbers.Length == 0) {
+                Console.WriteLine("配列に要素がありません");
+            } else {
+                var wBigerThanTen = wNumbers.Distinct().Count(x => x > 10);
+                Console.WriteLine(wBigerThanTen);
+            }
         }
     }
 }
