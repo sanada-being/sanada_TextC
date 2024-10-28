@@ -11,7 +11,7 @@ namespace Chapter5_1_1 {
             Console.WriteLine("1つ目の文字列を入力してください");
             string wWords1 = Console.ReadLine();
             if (String.IsNullOrWhiteSpace(wWords1)) {
-                Console.WriteLine("正しい文字列を入力してください");
+                Console.WriteLine("文字が入力されていません　文字列を入力してください。");
                 return;
             } else {
                 Console.WriteLine("1つめの文字列:" + wWords1);
@@ -20,7 +20,7 @@ namespace Chapter5_1_1 {
             Console.WriteLine("2つ目の文字列を入力してください");
             string wWords2 = Console.ReadLine();
             if (String.IsNullOrWhiteSpace(wWords2)) {
-                Console.WriteLine("正しい文字列を入力してください");
+                Console.WriteLine("文字が入力されていません　文字列を入力してください。");
                 return;
             } else {
                 Console.WriteLine("2つめの文字列:" + wWords2);

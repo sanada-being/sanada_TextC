@@ -12,10 +12,10 @@ namespace Chapter5_1_4 {
         誕生年: 1886
         */
         static void Main(string[] args) {
-            string wWriterInformation = "Novelist=谷崎潤一郎;BestWork=春琴抄;Born=1886";
-            var wWriterInfoDict = wWriterInformation.Split(';').Select(x => x.Split('=')).ToDictionary(y => y[0], y => y[1]);
+            string wNovelistInformation = "Novelist=谷崎潤一郎;BestWork=春琴抄;Born=1886";
+            var wNovelistInfoDict = wNovelistInformation.Split(';').Select(x => x.Split('=')).ToDictionary(y => y[0], y => y[1]);
 
-            Console.WriteLine($"作家　: {wWriterInfoDict["Novelist"]}{Environment.NewLine}代表作: {wWriterInfoDict["BestWork"]}{Environment.NewLine}誕生年: {wWriterInfoDict["Born"]}");
+            Console.WriteLine($"作家　: {wNovelistInfoDict["Novelist"]}{Environment.NewLine}代表作: {wNovelistInfoDict["BestWork"]}{Environment.NewLine}誕生年: {wNovelistInfoDict["Born"]}");
         }
     }
 }
