@@ -15,7 +15,7 @@ namespace Chapter7_1_1 {
         'B': 1
         'C': 1  ....
 
-        2. 上記プログラムを、SortDictionary<TKey,TValue>を使って書き換えてください。
+        2. 上記プログラムを、SortedDictionary<TKey,TValue>を使って書き換えてください。
         */
 
 
