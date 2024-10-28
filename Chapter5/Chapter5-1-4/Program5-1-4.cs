@@ -2,7 +2,7 @@
 using System.Linq;
 
 namespace Chapter5_1_4 {
-    internal class Program {
+    class Program {
         /*
         "Novelist=谷崎潤一郎;BestWork=春琴抄;Born=1886"という文字列から以下の出力を得る
         コンソールアプリケーションを作成して下さい。

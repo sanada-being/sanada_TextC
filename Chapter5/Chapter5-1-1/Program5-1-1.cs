@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace Chapter5_1_1 {
-    internal class Program {
+    class Program {
         /*
         コンソールから入力した2つの文字列が等しいかを調べるコードを書いてください。
         この時、大文字、小文字も違いは無視するようにしてください。

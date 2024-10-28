@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 
 namespace Chapter5_1_3 {
-    internal class Program {
+    class Program {
         /*
         "Jackdaws love my big sphinx of quartz"という文字列があります。
         この文字列に対して、以下の問題を解いてみてください。
@@ -36,12 +36,12 @@ namespace Chapter5_1_3 {
 
             // 4.
             Console.WriteLine("問題4");
-            foreach (var wWord in wWords.Where(x => x.Length <= 4).ToArray()) {
+            foreach (var wWord in wWords.Where(x => x.Length <= 4)) {
                 Console.WriteLine(wWord);
             }
             // 5.
             Console.WriteLine("問題5");
-           var wConnectedWords = new StringBuilder();
+            var wConnectedWords = new StringBuilder();
             foreach (var wWord in wWords) {
                 wConnectedWords.Append(wWord);
             }
