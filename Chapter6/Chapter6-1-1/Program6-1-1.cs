@@ -21,7 +21,6 @@ namespace Chapter6_1_1 {
         static void Main(string[] args) {
             var wNumbers = new int[] { 5, 10, 17, 9, 3, 21, 10, 40, 21, 3, 35 };
 
-            // ガード節
             if (wNumbers == null || wNumbers.Length == 0) {
                 Console.WriteLine("配列が存在しないか、要素が存在しません");
                 return;

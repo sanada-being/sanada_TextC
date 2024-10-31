@@ -40,10 +40,8 @@ namespace Program6_1_2 {
                new Book { Title = "一人で学ぶ並列処理プログラミング", Price = 4800, PageCount = 464 },
                new Book { Title = "フレーズで覚えるC#入門", Price = 5300, PageCount = 604 },
                new Book { Title = "私でも分かったASP.NET MVC", Price = 3200, PageCount = 453 },
-               new Book { Title = "楽しいC#プログラミング教室", Price = 2540, PageCount = 348 },
             };
 
-            // ガード節
             if (wBooks == null) {
                 Console.WriteLine("リストが存在しません");
                 return;
@@ -75,9 +73,9 @@ namespace Program6_1_2 {
             Console.WriteLine("問題4");
             var wBookFirstOver4000Yen = wBooks.Where(x => x.Price >= 4000).FirstOrDefault();
             if (wBookFirstOver4000Yen != null) {
-                Console.WriteLine($"本のタイトルは「{wBookFirstOver4000Yen.Title}」");
+                Console.WriteLine($"書籍名のタイトルは「{wBookFirstOver4000Yen.Title}」");
             } else {
-                Console.WriteLine("4000円以上の本は見つかりません");
+                Console.WriteLine("4000円以上の書籍は見つかりません");
             }
 
             // 5.
@@ -91,11 +89,21 @@ namespace Program6_1_2 {
 
             // 6. 
             Console.WriteLine("問題6");
-            wBooks.Where(x => x.PageCount >= 400).OrderByDescending(x => x.Price).ToList().ForEach(y => Console.WriteLine($"書籍名: {y.Title},　価格: {y.Price}円"));
+            var w400PageOfMore = wBooks.Where(x => x.PageCount >= 400).OrderByDescending(x => x.Price).ToList();
+            if (w400PageOfMore.Count == 0) {
+                Console.WriteLine("400ページ以上の書籍は存在しません");
+            } else {
+                w400PageOfMore.ForEach(x => Console.WriteLine($"書籍名: {x.Title}, 価格: {x.Price}円"));
+            }
 
             // 7.
             Console.WriteLine("問題7");
-            wBooks.Where(x => x.Title.Contains("C#") && x.PageCount <= 500).ToList().ForEach(y => Console.WriteLine($"書籍名: {y.Title}"));
+            var w500PageUnderCSharpBook = wBooks.Where(x => x.Title.Contains("C#") && x.PageCount <= 500).ToList();
+            if (w500PageUnderCSharpBook.Count == 0) {
+                Console.WriteLine("500ページ以下のC#書籍は存在しません");
+            } else {
+                w500PageUnderCSharpBook.ForEach(x => Console.WriteLine($"書籍名: {x.Title}"));
+            }
         }
     }
 }
