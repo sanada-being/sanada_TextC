@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Chapter7_1_1 {
     internal class Program {
@@ -20,11 +21,30 @@ namespace Chapter7_1_1 {
 
 
         static void Main(string[] args) {
-            // 1.
-            string wSentnece = "Cozy lummox gives smart squid who asks for job pen";
-            var wLetterCounts = new SortedDictionary<char, int>();
+            string wSentence = "Cozy lummox gives smart squid who asks for job pen";
+            // 1. 
+            var wLetterCounts = new Dictionary<char, int>();
 
-            foreach (char wCurrentChar in wSentnece.ToLower()) {
+            foreach (char wCurrentChar in wSentence.ToLower()) {
+                if (char.IsLetter(wCurrentChar)) {
+
+                    if (wLetterCounts.TryGetValue(wCurrentChar, out int wCount)) {
+                        wLetterCounts[wCurrentChar] = wCount + 1;
+                    } else {
+                        wLetterCounts[wCurrentChar] = 1;
+                    }
+                }
+            }
+
+            foreach (var wItem in wLetterCounts.OrderBy(x => x.Key)) {
+                Console.WriteLine($"'{char.ToUpper(wItem.Key)}': {wItem.Value}");
+            }
+
+            // 2.
+            Console.WriteLine("問題2");
+            var wLetterCounts2 = new SortedDictionary<char, int>();
+
+            foreach (char wCurrentChar in wSentence.ToLower()) {
                 if (char.IsLetter(wCurrentChar)) {
                     if (wLetterCounts.ContainsKey(wCurrentChar)) {
                         wLetterCounts[wCurrentChar]++;
@@ -34,7 +54,7 @@ namespace Chapter7_1_1 {
                 }
             }
 
-            foreach(var wItem in wLetterCounts){
+            foreach (var wItem in wLetterCounts2) {
                 Console.WriteLine($"'{char.ToUpper(wItem.Key)}': {wItem.Value}");
             }
         }

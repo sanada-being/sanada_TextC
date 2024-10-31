@@ -1,20 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System;
 
 namespace Chapter7_1_2 {
     /// <summary>
     /// Addreviationsクラス
     /// </summary>
     internal class Abbreviations {
-        private Dictionary<string, string> FDict = new Dictionary<string, string>();
+        private Dictionary<string, string> wAbbreviationDictionary = new Dictionary<string, string>();
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
         public Abbreviations() {
+
+            if (!File.Exists("Abbreviations.txt")) {
+                Console.WriteLine(" エラー： Abbreviations.txtが見つかりません");
+                return;
+            }
+
             var wLines = File.ReadAllLines("Abbreviations.txt");
-            FDict = wLines.Select(line => line.Split('=')).ToDictionary(x => x[0], x => x[1]);
+            wAbbreviationDictionary = wLines.Select(line => line.Split('=')).ToDictionary(x => x[0], x => x[1]);
         }
 
         /// <summary>
@@ -23,7 +30,7 @@ namespace Chapter7_1_2 {
         /// <param name="vAbbr">省略語</param>
         /// <param name="vJapanese">正式名称</param>
         public void Add(string vAbbr, string vJapanese) {
-            FDict[vAbbr] = vJapanese;
+            wAbbreviationDictionary[vAbbr] = vJapanese;
         }
 
         /// <summary>
@@ -33,7 +40,7 @@ namespace Chapter7_1_2 {
         /// <returns>省略語に対する正式名称</returns>
         public string this[string vAbbr] {
             get {
-                return FDict.ContainsKey(vAbbr) ? FDict[vAbbr] : null;
+                return wAbbreviationDictionary.ContainsKey(vAbbr) ? wAbbreviationDictionary[vAbbr] : null;
             }
         }
 
@@ -43,12 +50,12 @@ namespace Chapter7_1_2 {
         /// <param name="vJapanese">正式名称</param>
         /// <returns>正式名称に対する省略語</returns>
         public string ToAbbreviation(string vJapanese) {
-            return FDict.FirstOrDefault(x => x.Value == vJapanese).Key;
+            return wAbbreviationDictionary.FirstOrDefault(x => x.Value == vJapanese).Key;
         }
 
         // 日本語の位置を引数に与え、それが含まれる要素(Key,Value)をすべて取り出す
         public IEnumerable<KeyValuePair<string, string>> FindAll(string vSubstring) {
-            foreach (var wItem in FDict) {
+            foreach (var wItem in wAbbreviationDictionary) {
                 if (wItem.Value.Contains(vSubstring))
                     yield return wItem;
             }
@@ -57,9 +64,7 @@ namespace Chapter7_1_2 {
         /// <summary>
         /// 登録されている用語の数
         /// </summary>
-        public int Count {
-            get { return FDict.Count; }
-        }
+        public int Count => wAbbreviationDictionary.Count;
 
         // 2.
         /// <summary>
@@ -68,7 +73,7 @@ namespace Chapter7_1_2 {
         /// <param name="vAbbr"></param>
         /// <returns>削除の成否</returns>
         public bool Remove(string vAbbr) {
-            return FDict.Remove(vAbbr);
+            return wAbbreviationDictionary.Remove(vAbbr);
         }
 
         // 4.
@@ -77,7 +82,7 @@ namespace Chapter7_1_2 {
         /// </summary>
         /// <returns>省略語に対応する名称</returns>
         public IEnumerable<KeyValuePair<string, string>> GetThreeLetterAbbreviations() {
-            return FDict.Where(x => x.Key.Length == 3);
+            return wAbbreviationDictionary.Where(x => x.Key.Length == 3);
         }
     }
 }
