@@ -1,24 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Chapter8_1_1 {
-    internal class Program {
+    class Program {
+        /*
+        現在の日時を以下のような3種類の書式でコンソールに出力してください。
+        2019/1/15 19:48
+        2019年01月15日 19時48分32秒
+        平成31年 1月15日(火曜日)
+        */
         static void Main(string[] args) {
-            
-
-            var wToday = DateTime.Today;
-
-            int wDayOfYear = wToday.DayOfYear;
-            Console.WriteLine(wDayOfYear);
-
-            int wDay = DateTime.DaysInMonth(wToday.Year, wToday.Month);
-            var wEndOfMonth = new DateTime(wToday.Year,wToday.Month,wDay);
-            Console.WriteLine(wEndOfMonth);
-
+            var wNow = DateTime.Now;
+            // 1. 
+            Console.WriteLine(wNow.ToString("yyyy/M/d HH:mm"));
+            // 2. 
+            Console.WriteLine(wNow.ToString("yyyy年MM月/dd日 HH時mm分ss秒"));
+            // 3.
+            var wCulture = new CultureInfo("ja-JP");
+            wCulture.DateTimeFormat.Calendar = new JapaneseCalendar();
+            Console.WriteLine(wNow.ToString("ggyy年M月d日(dddd)", wCulture));
         }
     }
 }
