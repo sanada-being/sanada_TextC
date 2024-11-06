@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4B562835-9AE7-4D1E-847C-E04C89108CA6}</ProjectGuid>
+    <ProjectGuid>{344AC5ED-C140-476A-BBD5-2044CDC94778}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Chapter9_1_1</RootNamespace>
-    <AssemblyName>Chapter9-1-1</AssemblyName>
+    <RootNamespace>Program9_1_3</RootNamespace>
+    <AssemblyName>Program9-1-3</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,8 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CountClass.cs" />
-    <Compile Include="Program9-1-1.cs" />
+    <Compile Include="Program9-1-3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
