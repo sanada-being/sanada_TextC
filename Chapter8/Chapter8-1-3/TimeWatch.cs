@@ -13,17 +13,13 @@ namespace Chapter8_1_3 {
         /// <summary>
         /// 開始時間
         /// </summary>
-        public void Start() {
-            FStartTime = DateTime.Now;
-        }
+        public void Start() => FStartTime = DateTime.Now;
 
         /// <summary>
         /// 経過時間
         /// </summary>
         /// <returns>経過時間を返す</returns>
-        public TimeSpan Stop() {
-            FStopTime = DateTime.Now;
-            return this.Duration;
-        }
+        public TimeSpan Stop() => DateTime.Now - this.FStartTime;
     }
 }
+

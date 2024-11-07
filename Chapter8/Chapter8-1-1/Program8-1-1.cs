@@ -9,15 +9,15 @@ namespace Chapter8_1_1 {
         平成31年 1月15日(火曜日)
         */
         static void Main(string[] args) {
-            var wNow = DateTime.Now;
+            var wNow = new DateTime(2024,1,5);
             // 1. 
             Console.WriteLine(wNow.ToString("yyyy/M/d HH:mm"));
             // 2. 
-            Console.WriteLine(wNow.ToString("yyyy年MM月/dd日 HH時mm分ss秒"));
+            Console.WriteLine(wNow.ToString("yyyy年MM月dd日 HH時mm分ss秒"));
             // 3.
             var wCulture = new CultureInfo("ja-JP");
             wCulture.DateTimeFormat.Calendar = new JapaneseCalendar();
-            Console.WriteLine(wNow.ToString("ggyy年M月d日(dddd)", wCulture));
+            Console.WriteLine(wNow.ToString($"ggyy年{wNow.Month,2}月d日(dddd)", wCulture));
         }
     }
 }
