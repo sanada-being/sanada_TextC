@@ -14,8 +14,8 @@ namespace Chapter8_1_2 {
 
         // 1. メソッド
         public static DateTime NextDay(DateTime vDate, DayOfWeek vDayOfWeek) {
-            const int wDaysInWeek = 7;
-            var wDays = (int)vDayOfWeek - (int)(vDate.DayOfWeek) + wDaysInWeek;
+            const int C_DaysInWeek = 7;
+            var wDays = (int)vDayOfWeek - (int)(vDate.DayOfWeek) + C_DaysInWeek;
             return vDate.AddDays(wDays);
         }
     }

@@ -6,11 +6,6 @@ namespace Chapter8_1_3 {
         private DateTime FStopTime;
 
         /// <summary>
-        /// 経過時間
-        /// </summary>
-        public TimeSpan Duration => FStopTime - FStartTime;
-
-        /// <summary>
         /// 開始時間
         /// </summary>
         public void Start() => FStartTime = DateTime.Now;

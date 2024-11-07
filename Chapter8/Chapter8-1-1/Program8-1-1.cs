@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+
 namespace Chapter8_1_1 {
     class Program {
         /*
@@ -9,7 +10,7 @@ namespace Chapter8_1_1 {
         平成31年 1月15日(火曜日)
         */
         static void Main(string[] args) {
-            var wNow = new DateTime(2024,1,5);
+            var wNow = new DateTime(2024, 1, 5);
             // 1. 
             Console.WriteLine(wNow.ToString("yyyy/M/d HH:mm"));
             // 2. 
@@ -17,7 +18,7 @@ namespace Chapter8_1_1 {
             // 3.
             var wCulture = new CultureInfo("ja-JP");
             wCulture.DateTimeFormat.Calendar = new JapaneseCalendar();
-            Console.WriteLine(wNow.ToString($"ggyy年{wNow.Month,2}月d日(dddd)", wCulture));
+            Console.WriteLine(wNow.ToString($"ggyy年{wNow.Month, 2}月d日(dddd)", wCulture));
         }
     }
 }
