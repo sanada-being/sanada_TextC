@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
 namespace Chapter9_1_1 {
     /// <summary>
@@ -43,12 +44,7 @@ namespace Chapter9_1_1 {
 
             if (File.Exists(vFilePath)) {
                 var wLines2 = File.ReadAllLines(vFilePath);
-
-                foreach (var wLine2 in wLines2) {
-                    if (wLine2.Contains("class")) {
-                        wClassCount2++;
-                    }
-                }
+                wClassCount2 = wLines2.Count(x => x.Contains("class"));
             } else {
                 Console.WriteLine("指定したファイルが存在しません");
             }
@@ -66,12 +62,7 @@ namespace Chapter9_1_1 {
 
             if (File.Exists(vFilePath)) {
                 var wLines3 = File.ReadLines(vFilePath);
-
-                foreach (var wLine3 in wLines3) {
-                    if (wLine3.Contains("class")) {
-                        wClassCount3++;
-                    }
-                }
+                wClassCount3 = wLines3.Count(x => x.Contains("class"));
             } else {
                 Console.WriteLine("指定したファイルが存在しません");
             }

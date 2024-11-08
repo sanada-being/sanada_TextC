@@ -15,7 +15,7 @@ namespace Chapter9_1_1 {
         */
         static void Main(string[] args) {
             var wCountClass = new CountClass();
-            var wFilePath = @"C:\Users\sanada\Desktop\ripository\C#テキスト学習2冊目\Chapter9\Chapter9-1-1\9_CountClass.txt";
+            var wFilePath = @"..\..\9_CountClass.cs";
 
             // 1.
             Console.WriteLine($"'class'が含まれている行数: {wCountClass.CountContainClass1(wFilePath)}");

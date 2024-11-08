@@ -1,5 +1,4 @@
 こんにちは！
-こんにちは！
 README
 class
 class
@@ -29,5 +28,4 @@ class の勉強
 class の勉強
 
 
-こんにちは！
 こんにちは！

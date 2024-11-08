@@ -10,15 +10,15 @@ namespace Chapter9_1_4 {
         コピー先に同名ファイル名がある場合は置き換えてください。
         */
         static void Main(string[] args) {
-            var wMainDirectory = @"C:\Users\sanada\Desktop\ripository\C#テキスト学習2冊目\Chapter9\Chapter9-1-4\MainDirectory";
-            var wNewDirectory = @"C:\Users\sanada\Desktop\ripository\C#テキスト学習2冊目\Chapter9\Chapter9-1-4\NewDirectory";
+            var wMainDirectory = @"..\..\MainDirectory";
+            var wNewDirectory = @"..\..\NewDirectory";
 
             if (Directory.Exists(wMainDirectory)) {
                 if (!Directory.Exists(wNewDirectory)) {
-                    Console.WriteLine("コピー先のディレクトリが存在しません");
-                    return;
+                    Directory.CreateDirectory(wNewDirectory);
                 }
                 var wFiles = Directory.GetFiles(wMainDirectory);
+
                 foreach (var wFile in wFiles) {
 
                     var wFileNmaeWithOutExtension = Path.GetFileNameWithoutExtension(wFile);

@@ -10,6 +10,7 @@ namespace Chapter9_1_3 {
         static void Main(string[] args) {
             if (args.Length < 2) {
                 Console.WriteLine("元のファイルと内容を追加するファイルのパスを指定してください");
+                return;
             }
             var wMainFilePath = args[0];
             var wAddFilePath = args[1];
