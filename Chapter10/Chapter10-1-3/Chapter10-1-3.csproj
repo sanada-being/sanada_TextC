@@ -48,6 +48,31 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="myweb\.git\config" />
+    <None Include="myweb\.git\description" />
+    <None Include="myweb\.git\HEAD" />
+    <None Include="myweb\.git\hooks\applypatch-msg.sample" />
+    <None Include="myweb\.git\hooks\commit-msg.sample" />
+    <None Include="myweb\.git\hooks\fsmonitor-watchman.sample" />
+    <None Include="myweb\.git\hooks\post-update.sample" />
+    <None Include="myweb\.git\hooks\pre-applypatch.sample" />
+    <None Include="myweb\.git\hooks\pre-commit.sample" />
+    <None Include="myweb\.git\hooks\pre-merge-commit.sample" />
+    <None Include="myweb\.git\hooks\pre-push.sample" />
+    <None Include="myweb\.git\hooks\pre-rebase.sample" />
+    <None Include="myweb\.git\hooks\pre-receive.sample" />
+    <None Include="myweb\.git\hooks\prepare-commit-msg.sample" />
+    <None Include="myweb\.git\hooks\push-to-checkout.sample" />
+    <None Include="myweb\.git\hooks\sendemail-validate.sample" />
+    <None Include="myweb\.git\hooks\update.sample" />
+    <None Include="myweb\.git\info\exclude" />
+    <None Include="myweb\.git\sourcetreeconfig.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="myweb\.git\objects\info\" />
+    <Folder Include="myweb\.git\objects\pack\" />
+    <Folder Include="myweb\.git\refs\heads\" />
+    <Folder Include="myweb\.git\refs\tags\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
