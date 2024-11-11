@@ -8,7 +8,7 @@ namespace Chapter9_1_5 {
         */
         static void Main(string[] args) {
             var wMainDirectory = @"..\..\..\Chapter9-1-5";
-            const int C_1MBSize = 1 * 1024 * 1024;
+            const int C_SizeInMB = 1 * 1024 * 1024;
             var wFoundLargeFile = false;
 
             if (!Directory.Exists(wMainDirectory)) {
@@ -21,7 +21,7 @@ namespace Chapter9_1_5 {
             foreach (var wFile in wFiles) {
                 var wFileInfo = new FileInfo(wFile);
 
-                if (wFileInfo.Length >= C_1MBSize) {
+                if (wFileInfo.Length >= C_SizeInMB) {
                     Console.WriteLine($"ファイル名:{wFile}, サイズ:{wFileInfo.Length}バイト");
                     wFoundLargeFile = true;
                 }

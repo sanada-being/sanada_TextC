@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Linq;
 
 namespace Chapter9_1_1 {
@@ -22,7 +23,7 @@ namespace Chapter9_1_1 {
                 using (var wReader = new StreamReader(vFilePath)) {
                     while (!wReader.EndOfStream) {
                         var wLine = wReader.ReadLine();
-                        if (wLine.Contains("class")) {
+                        if (Regex.IsMatch(wLine, @"\sclass\s")) {
                             wClassCount++;
                         }
                     }
@@ -43,8 +44,7 @@ namespace Chapter9_1_1 {
             int wClassCount2 = 0;
 
             if (File.Exists(vFilePath)) {
-                var wLines2 = File.ReadAllLines(vFilePath);
-                wClassCount2 = wLines2.Count(x => x.Contains("class"));
+                wClassCount2 = File.ReadAllLines(vFilePath).Count(x => Regex.IsMatch(x, @"\sclass\s"));
             } else {
                 Console.WriteLine("指定したファイルが存在しません");
             }
@@ -59,10 +59,8 @@ namespace Chapter9_1_1 {
         /// <returns>classが見つかった行数</returns>
         public int CountContainClass3(string vFilePath) {
             int wClassCount3 = 0;
-
             if (File.Exists(vFilePath)) {
-                var wLines3 = File.ReadLines(vFilePath);
-                wClassCount3 = wLines3.Count(x => x.Contains("class"));
+                wClassCount3 = File.ReadLines(vFilePath).Count(x => Regex.IsMatch(x, @"\sclass\s"));
             } else {
                 Console.WriteLine("指定したファイルが存在しません");
             }
