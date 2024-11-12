@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0EC947DB-D39E-44F5-BE64-22672D9B7648}</ProjectGuid>
+    <ProjectGuid>{EFDF0E7E-886E-4B3E-A1B2-252A5C253EAD}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Chapter12_1_1</RootNamespace>
-    <AssemblyName>Chapter12-1-1</AssemblyName>
+    <RootNamespace>Chapter12_1_2</RootNamespace>
+    <AssemblyName>Chapter12-1-2</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -44,8 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Employee.cs" />
-    <Compile Include="Program12-1-1.cs" />
+    <Compile Include="Program12-1-2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
