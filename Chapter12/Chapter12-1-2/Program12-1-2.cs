@@ -13,13 +13,9 @@ namespace Chapter12_1_2 {
         2. 上記Noveristオブジェクトの内容を以下のようなJSONファイルにシリアル化するコードを書いてください。
         */
         static void Main(string[] args) {
-            /*
+            // 1.
             Console.WriteLine("ファイルパスを入力してください");
             var wFilePath = Console.ReadLine();
-            */
-
-            // 1.
-            var wFilePath = @"..\..\Sample.xml";
 
             if (!File.Exists(wFilePath)) {
                 Console.WriteLine("指定したファイルが存在しません");
