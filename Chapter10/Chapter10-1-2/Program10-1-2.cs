@@ -18,12 +18,14 @@ namespace Chapter10_1_2 {
                 var wTexts = File.ReadAllText(wFilePath);
                 var w3OrMoreNumbers = Regex.Matches(wTexts, @"\d{3,}").Cast<Match>().ToList();
                 w3OrMoreNumbers.ForEach(x => Console.WriteLine(x.Value));
+            } catch (UnauthorizedAccessException) {
+                Console.WriteLine("ファイルにアクセスする権限がありません");
             } catch (ArgumentException) {
                 Console.WriteLine("無効な引数が渡されました");
             } catch (IOException) {
                 Console.WriteLine("ファイルの読み込み中にエラーが発生しました");
-            } catch (Exception) {
-                Console.WriteLine("予期しないエラーが発生しました");
+            } catch (Exception wEx) {
+                Console.WriteLine($"予期しないエラーが発生しました:{wEx.Message} ");
             }
         }
     }

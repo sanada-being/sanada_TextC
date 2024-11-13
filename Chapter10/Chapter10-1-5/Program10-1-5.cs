@@ -12,16 +12,18 @@ namespace Chapter10_1_5 {
         static void Main(string[] args) {
             var wFilePath = @"..\..\Sample10-5.html";
 
-            try {
-                if (File.Exists(wFilePath)) {
-                    var wHtmlTexts = File.ReadAllLines(wFilePath);
-                    var wPattern = @"<\s*(/?)\s*([A-Z]+)(\s*[^>]*)>";
+            if (!File.Exists(wFilePath)) {
+                Console.WriteLine("指定したファイルが存在しません");
+            }
 
-                    File.WriteAllText(wFilePath, ReplaceText(wHtmlTexts, wPattern));
-                    Console.WriteLine("正常に更新されました");
-                } else {
-                    Console.WriteLine("指定したファイルが存在しません");
-                }
+            try {
+                var wHtmlTexts = File.ReadAllLines(wFilePath);
+                var wPattern = @"<\s*(/?)\s*([A-Z]+)(\s*[^>]*)>";
+
+                File.WriteAllText(wFilePath, ReplaceText(wHtmlTexts, wPattern));
+                Console.WriteLine("正常に更新されました");
+            } catch (UnauthorizedAccessException) {
+                Console.WriteLine("ファイルにアクセスする権限がありません");
             } catch (DirectoryNotFoundException) {
                 Console.WriteLine("指定したディレクトリが存在しません");
             } catch (IOException) {
