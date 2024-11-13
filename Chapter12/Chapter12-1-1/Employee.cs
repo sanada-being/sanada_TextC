@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -14,6 +10,7 @@ namespace Chapter12_1_1 {
     [XmlRoot("employee")]
     [DataContract]
     public class Employee {
+
         [XmlElement("id")]
         [DataMember(Order = 1)]
         public int Id { get; set; }

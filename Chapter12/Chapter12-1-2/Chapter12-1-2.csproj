@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Novelist.cs" />
     <Compile Include="Program12-1-2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
