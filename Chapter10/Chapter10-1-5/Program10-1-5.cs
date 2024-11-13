@@ -10,7 +10,8 @@ namespace Chapter10_1_5 {
         可能ならば、<DIV class="mybox"id="myId">のように属性が記述されている場合にも対応してください。属性の中には'<'、'>'は含まれないものとします。
         */
         static void Main(string[] args) {
-            var wFilePath = @"..\..\Sample10-5.html";
+            Console.WriteLine("ファイルパスを入力してください");
+            var wFilePath = Console.ReadLine();
 
             if (!File.Exists(wFilePath)) {
                 Console.WriteLine("指定したファイルが存在しません");
