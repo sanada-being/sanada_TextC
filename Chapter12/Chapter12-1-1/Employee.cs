@@ -20,5 +20,13 @@ namespace Chapter12_1_1 {
         [XmlElement("hiredate")]
         [DataMember(Order = 3)]
         public DateTime HireDate { get; set; }
+
+        public Employee() { }   
+
+        public Employee(int vId, string vName, DateTime vHireDate) {
+            this.Id = vId;
+            this.Name = vName;
+            this.HireDate = vHireDate;
+        }
     }
 }

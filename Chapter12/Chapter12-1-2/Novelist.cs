@@ -8,13 +8,13 @@ namespace Chapter12_1_2 {
     [DataContract]
     [XmlRoot("novelist")]
     public class Novelist {
-        [DataMember(Order = 3)]
+        [DataMember(Order = 1)]
         [XmlElement("name")]
         public string Name { get; set; }
-        [DataMember(Order = 1)]
+        [DataMember(Order = 2)]
         [XmlElement("birth")]
         public DateTime Birth { get; set; }
-        [DataMember(Order = 2)]
+        [DataMember(Order = 3)]
         [XmlArray("masterpieces")]
         [XmlArrayItem("title")]
         public List<string> Masterpieces { get; set; }

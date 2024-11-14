@@ -21,9 +21,7 @@ namespace Chapter12_1_1 {
         static void Main(string[] args) {
             // 1.シリアル化
             Console.WriteLine("問題1");
-            var wEmployee = new Employee {
-                Id = 1, Name = "akbar", HireDate = new DateTime(2020, 4, 1)
-            };
+            var wEmployee = new Employee(1, "akbar", new DateTime(2020, 4, 1));
 
             var wXmlSerializer = new XmlSerializer(typeof(Employee));
             var wStringBuilder = new StringWriter();
@@ -34,18 +32,16 @@ namespace Chapter12_1_1 {
             // 1.逆シリアル化
             using (var wReader = new StringReader(wXmlData)) {
                 var wDeserializedEmployee = (Employee)wXmlSerializer.Deserialize(wReader);
-                Console.WriteLine("\nDeserialized Employee:");
-                Console.WriteLine($"Id: {wDeserializedEmployee.Id}");
-                Console.WriteLine($"Name: {wDeserializedEmployee.Name}");
-                Console.WriteLine($"HireDate: {wDeserializedEmployee.HireDate.ToString("yyyy-MM-dd")}");
+                Console.WriteLine("\n逆シリアル化された従業員データ:");
+                PrintEmployeeDetails(wDeserializedEmployee);
             }
 
             // 2.
             Console.WriteLine("\n問題2");
             var wEmployees = new Employee[] {
-                new Employee{Id = 2, Name ="sugisaka",HireDate = new DateTime(2019,4, 1) },
-                new Employee{Id = 3, Name ="taiga",HireDate = new DateTime(2018,4,1) },
-                new Employee{Id = 4, Name ="oohashi",HireDate = new DateTime(2021,4,1) }
+                new Employee( 2, "sugisaka", new DateTime(2019,4,1)),
+                new Employee( 3, "taiga", new DateTime(2018,4,1)),
+                new Employee( 4, "oohashi", new DateTime(2021,4,1))
             };
             var wSerializer = new DataContractSerializer(typeof(Employee[]));
             using (var wFileStream = new FileStream("Employees.xml", FileMode.Create)) {
@@ -61,7 +57,7 @@ namespace Chapter12_1_1 {
 
                 Console.WriteLine("\n逆シリアル化された従業員データ:");
                 foreach (var wEmployeeDeserialized in wEmployeesDeserialized) {
-                    Console.WriteLine($"Id: {wEmployeeDeserialized.Id}, Name: {wEmployeeDeserialized.Name}, HireDate: {wEmployeeDeserialized.HireDate.ToShortDateString()}");
+                    PrintEmployeeDetails(wEmployeeDeserialized);
                 }
             }
 
@@ -69,9 +65,9 @@ namespace Chapter12_1_1 {
             Console.WriteLine("\n問題4");
             var wEmployees2 = new Employee2[]
             {
-                new Employee2 { Id = 5, Name = "miyake", HireDate = new DateTime(2017, 4, 1) },
-                new Employee2 { Id = 6, Name = "matsumoto", HireDate = new DateTime(2016, 4, 1) },
-                new Employee2 { Id = 7, Name = "ueshiba", HireDate = new DateTime(2025, 4, 1) }
+                new Employee2 ( 5, "miyake", new DateTime(2017,4,1)),
+                new Employee2 ( 6, "matsumoto", new DateTime(2016,4,1)),
+                new Employee2 ( 7, "ueshiba", new DateTime(2025,4,1)),
             };
 
             using (var wJsonFile = new FileStream("Employees.json", FileMode.Create)) {
@@ -81,6 +77,14 @@ namespace Chapter12_1_1 {
             Console.WriteLine("JSONファイルにシリアル化されたデータ:");
             Console.WriteLine(File.ReadAllText("Employees.json"));
         }
+        /// <summary>
+        /// 社員情報出力メソッド
+        /// </summary>
+        /// <param name="vEmployee">従業員オブジェクト</param>
+        public static void PrintEmployeeDetails(Employee vEmployee) {
+            Console.WriteLine($"Id: {vEmployee.Id}, Name: {vEmployee.Name}, HireDate: {vEmployee.HireDate.ToShortDateString()}");
+        }
+
     }
 }
 
