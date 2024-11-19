@@ -29,7 +29,7 @@ namespace Chapter11_1_2 {
             var wWords = wDoc.Descendants("word");
 
             var wNewDoc = new XElement("difficultkanji", wWords.Select
-                (x => new XElement("word", new XAttribute("kanji", x.Element("kanji")?.Value), new XAttribute("yomi", x.Element("yomi")?.Value))));
+                (x => new XElement("word", x.Elements().Select(y => new XAttribute(y.Name.LocalName,y.Value)))));
 
             wNewDoc.Save(@"..\..\NewFile.xml");
             Console.WriteLine("新しいファイルが作成されました");
