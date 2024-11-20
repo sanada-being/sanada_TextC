@@ -22,12 +22,7 @@ namespace Chapter12_1_2 {
                 return;
             }
             Novelist wNovelist = DeserializeXmlToNovelist(wFilePath);
-
-            if (wNovelist != null) {
-                DisplayNovelistInformation(wNovelist);
-            }else {
-                Console.WriteLine("逆シリアル化に失敗しました。JSONシリアル化は行いません。");
-            }
+            DisplayNovelistInformation(wNovelist);
 
             // 2.
             SerializeNovelistToJson(wNovelist);
@@ -60,19 +55,31 @@ namespace Chapter12_1_2 {
         /// </summary>
         /// <param name="vNovelist">Novelistオブジェクト</param>
         static void DisplayNovelistInformation(Novelist vNovelist) {
+            if (vNovelist == null) {
+                Console.WriteLine("Novelist オブジェクトが null のため情報を表示できません。処理を終了します");
+                return;
+            }
             Console.WriteLine($"Name: {vNovelist.Name}");
             Console.WriteLine($"Birth: {vNovelist.Birth:yyyy-MM-dd}");
             Console.WriteLine("Masterpieces:");
-            foreach (var wTitle in vNovelist.Masterpieces) {
-                Console.WriteLine($"・{wTitle}");
+            if (vNovelist.Masterpieces == null || vNovelist.Masterpieces.Count == 0) {
+                Console.WriteLine("表示する作品がありません");
+            } else {
+                foreach (var wTitle in vNovelist.Masterpieces) {
+                    Console.WriteLine($"・{wTitle}");
+                }
             }
         }
 
         /// <summary>
-        /// JSONファイル逆シリアル化メソッド
+        /// JSONファイルシリアル化メソッド
         /// </summary>
         /// <param name="vNovelist">Novelistオブジェクト</param>
         static void SerializeNovelistToJson(Novelist vNovelist) {
+            if (vNovelist == null) {
+                Console.WriteLine("JSON ファイルへのシリアル化に失敗しました。Novelist オブジェクトが null のため、処理を続行できません");
+                return;
+            }
             try {
                 using (var wStream = new FileStream("Novelist.json", FileMode.Create, FileAccess.Write)) {
                     var wSerializer = new DataContractJsonSerializer(typeof(Novelist));

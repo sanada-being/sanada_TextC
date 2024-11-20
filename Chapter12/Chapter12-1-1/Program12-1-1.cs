@@ -33,7 +33,7 @@ namespace Chapter12_1_1 {
             using (var wReader = new StringReader(wXmlData)) {
                 var wDeserializedEmployee = (Employee)wXmlSerializer.Deserialize(wReader);
                 Console.WriteLine("\n逆シリアル化された従業員データ:");
-                PrintEmployeeDetails(wDeserializedEmployee);
+                Employee.PrintEmployeeDetails(wDeserializedEmployee);
             }
 
             // 2.
@@ -57,7 +57,7 @@ namespace Chapter12_1_1 {
 
                 Console.WriteLine("\n逆シリアル化された従業員データ:");
                 foreach (var wEmployeeDeserialized in wEmployeesDeserialized) {
-                    PrintEmployeeDetails(wEmployeeDeserialized);
+                    Employee.PrintEmployeeDetails(wEmployeeDeserialized);
                 }
             }
 
@@ -77,14 +77,6 @@ namespace Chapter12_1_1 {
             Console.WriteLine("JSONファイルにシリアル化されたデータ:");
             Console.WriteLine(File.ReadAllText("Employees.json"));
         }
-        /// <summary>
-        /// 社員情報出力メソッド
-        /// </summary>
-        /// <param name="vEmployee">従業員オブジェクト</param>
-        public static void PrintEmployeeDetails(Employee vEmployee) {
-            Console.WriteLine($"Id: {vEmployee.Id}, Name: {vEmployee.Name}, HireDate: {vEmployee.HireDate.ToShortDateString()}");
-        }
-
     }
 }
 
