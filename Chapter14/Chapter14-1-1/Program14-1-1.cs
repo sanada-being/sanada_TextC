@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 using System.Diagnostics;
-using System.Linq.Expressions;
+using System.IO;
 
 namespace Chapter14_1_1 {
     class Program {
@@ -14,65 +9,10 @@ namespace Chapter14_1_1 {
         1つのプログラムが終わるのを待って次のプログラムを起動してください。
         入力するファイルの形式は、通常のテキストファイルでもXMLファイルでも構いません。
         */
-
         static void Main(string[] args) {
-            /*
             Console.WriteLine("ファイルパスを入力してください");
             var wFilePath = Console.ReadLine();
-            */
-            var wFilePath = @"..\..\Sample14-1.txt";
-            if (!File.Exists(wFilePath)) {
-                Console.WriteLine("指定したファイルパスが存在しません");
-                return;
-            }
-            try {
-                var wFullPath = Environment.ExpandEnvironmentVariables(wFilePath);
-                var wLines = File.ReadAllLines(wFullPath);
-                foreach (var wLine in wLines) {
-                    RunProgram(wLine);
-                }
-            } catch (Exception wEx) {
-                Console.WriteLine($"エラーが発生しました: {wEx.Message}");
-            }
-        }
 
-        /// <summary>
-        /// ファイル内プログラム実行メソッド
-        /// </summary>
-        /// <param name="vProgramPath">ファイル内のプログラムのパス</param>
-        static void RunProgram(string vProgramPath) {
-            if (!File.Exists(vProgramPath)) {
-                Console.WriteLine($"指定したプログラムが見つかりません: {vProgramPath}");
-                return;
-            }
-            try {
-                var wProcess = new Process();
-                wProcess.StartInfo.FileName = vProgramPath;
-                wProcess.Start();
-                wProcess.WaitForExit();
-                Console.WriteLine($"{vProgramPath}の実行が完了しました");
-            } catch (Exception wEx) {
-                Console.WriteLine($"エラーが発生しました: {wEx.Message}");
-            }
-        }
-    }
-}
-
-
-
-
-
-
-
-/*
-static void Main(string[] args) {
-            /*
-            Console.WriteLine("ファイルパスを入力してください");
-            var wFilePath = Console.ReadLine();
-            */
-
-    /*
-            var wFilePath = @"..\..\Sample14-1.txt";
             if (!File.Exists(wFilePath)) {
                 Console.WriteLine("指定したファイルパスが存在しません");
                 return;
@@ -88,13 +28,12 @@ static void Main(string[] args) {
                 Console.WriteLine($"エラーが発生しました: {wEx.Message}");
             }
         }
-      
+
         /// <summary>
         ///  ファイル内プログラム実行メソッド
         /// </summary>
         /// <param name="vLine">ファイル内のプログラムのパス</param>
         static void RunProgram(string vLine) {
-            // 最初のスペースで分割して、プログラムパスと引数を取得
             var wParts = vLine.Split(new[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
 
             if (wParts.Length == 0) {
@@ -121,8 +60,8 @@ static void Main(string[] args) {
             }
         }
     }
-    }
-*/
-    
+}
+
+
 
 
