@@ -1,7 +1,7 @@
-﻿using Chapter13_1_1.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Chapter13_1_1.Models;
 
 namespace Chapter13_1_1 {
     class Program {
@@ -28,9 +28,21 @@ namespace Chapter13_1_1 {
         5. 著者ごとの書籍のタイトルと発行年を表示してください。なお、著者は誕生日の遅い順にならべてください。
         */
         static void Main(string[] args) {
+            var wNewAuthorsData = new List<Author> {
+                    new Author { Name = "菊池寛", Birthday = new DateTime(1998, 12, 16), Gender = "男性" },
+                    new Author { Name = "川端康成", Birthday = new DateTime(1899, 6, 14), Gender = "男性" },
+                    new Author { Name = "宮沢賢治", Birthday = new DateTime(1896, 8, 27), Gender = "男性" },
+                    new Author { Name = "夏目漱石", Birthday = new DateTime(1867, 2, 9), Gender = "男性" },
+            };
+            var wNewBooksData = new List<(string Title, int PublishedYear, string AuthorName)> {
+                    ("こころ", 1991, "夏目漱石"),
+                    ("伊豆の踊子", 2003, "川端康成"),
+                    ("真珠夫人", 2002, "菊池寛"),
+                    ("注文の多い料理店", 2000, "宮沢賢治")
+                };
             // 1.
-            InsertAuthors();
-            InsertBooks();
+            InsertAuthors(wNewAuthorsData);
+            InsertBooks(wNewBooksData);
 
             // 2.
             Console.WriteLine("問題2");
@@ -72,20 +84,12 @@ namespace Chapter13_1_1 {
         /// <summary>
         /// 著者情報追加メソッド
         /// </summary>
-        static void InsertAuthors() {
+        static void InsertAuthors(List<Author> vNewAuthorsData) {
             using (var wDb = new BooksDbContext()) {
-                var wAuthorsData = new List<Author> {
-            new Author { Name = "菊池寛", Birthday = new DateTime(1998, 12, 16), Gender = "男性" },
-            new Author { Name = "川端康成", Birthday = new DateTime(1899, 6, 14), Gender = "男性" },
-            new Author { Name = "宮沢賢治", Birthday = new DateTime(1896, 8, 27), Gender = "男性" },
-            new Author { Name = "夏目漱石", Birthday = new DateTime(1867, 2, 9), Gender = "男性" },
-            };
+                var wExistingAuthors = wDb.Authors.Select(x => x.Name).ToList();
+                var wNewAuthors = vNewAuthorsData.Where(x => !wExistingAuthors.Contains(x.Name)).ToList();
 
-                foreach (var wAuthor in wAuthorsData) {
-                    if (!wDb.Authors.Any(a => a.Name == wAuthor.Name)) {
-                        wDb.Authors.Add(wAuthor);
-                    }
-                }
+                wDb.Authors.AddRange(wNewAuthors);
                 wDb.SaveChanges();
                 Console.WriteLine("著者情報の追加が完了しました");
             }
@@ -94,23 +98,17 @@ namespace Chapter13_1_1 {
         /// <summary>
         /// 書籍情報追加メソッド
         /// </summary>
-        static void InsertBooks() {
+        static void InsertBooks(List<(string Title, int PublishedYear, string AuthorName)> vNewBooksData) {
             using (var wDb = new BooksDbContext()) {
-                var wBooksData = new List<(string Title, int PublishedYear, string AuthorName)> {
-            ("こころ", 1991, "夏目漱石"),
-            ("伊豆の踊子", 2003, "川端康成"),
-            ("真珠夫人", 2002, "菊池寛"),
-            ("注文の多い料理店", 2000, "宮沢賢治")
-                };
+                var wExistingAuthors = wDb.Authors.ToList();
 
-                foreach (var (wTitle, wPublishedYear, wAuthorName) in wBooksData) {
-
-                    var wAuthor = wDb.Authors.SingleOrDefault(a => a.Name == wAuthorName);
+                foreach (var (wTitle, wPublishedYear, wAuthorName) in vNewBooksData) {
+                    var wAuthor = wExistingAuthors.SingleOrDefault(x => x.Name == wAuthorName);
                     if (wAuthor == null) {
                         wAuthor = new Author { Name = wAuthorName, Birthday = null, Gender = "不明" };
                         wDb.Authors.Add(wAuthor);
+                        wExistingAuthors.Add(wAuthor);
                     }
-                    wDb.SaveChanges();
 
                     var wBook = new Book { Title = wTitle, PublishedYear = wPublishedYear, Author = wAuthor };
                     wDb.Books.Add(wBook);
