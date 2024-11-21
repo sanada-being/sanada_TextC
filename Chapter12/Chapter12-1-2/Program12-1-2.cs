@@ -62,12 +62,11 @@ namespace Chapter12_1_2 {
             Console.WriteLine($"Name: {vNovelist.Name}");
             Console.WriteLine($"Birth: {vNovelist.Birth:yyyy-MM-dd}");
             Console.WriteLine("Masterpieces:");
+
             if (vNovelist.Masterpieces == null || vNovelist.Masterpieces.Count == 0) {
                 Console.WriteLine("表示する作品がありません");
             } else {
-                foreach (var wTitle in vNovelist.Masterpieces) {
-                    Console.WriteLine($"・{wTitle}");
-                }
+                vNovelist.Masterpieces.ForEach(x => Console.WriteLine($"・{x}"));
             }
         }
 
@@ -92,6 +91,7 @@ namespace Chapter12_1_2 {
         }
     }
 }
+
 
 
 
