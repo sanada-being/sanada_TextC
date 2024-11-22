@@ -35,11 +35,11 @@ namespace Chapter13_1_1 {
                     new Author { Name = "夏目漱石", Birthday = new DateTime(1867, 2, 9), Gender = "男性" },
             };
             var wNewBooksData = new List<(string Title, int PublishedYear, string AuthorName)> {
-                    ("こころ", 1991, "夏目漱石"),
+                    ("こころ",1991, "夏目漱石"),
                     ("伊豆の踊子", 2003, "川端康成"),
                     ("真珠夫人", 2002, "菊池寛"),
                     ("注文の多い料理店", 2000, "宮沢賢治")
-                };
+            };
             // 1.
             InsertAuthors(wNewAuthorsData);
             InsertBooks(wNewBooksData);
@@ -55,14 +55,13 @@ namespace Chapter13_1_1 {
             // 3.
             Console.WriteLine("\n問題3");
             using (var wDb = new BooksDbContext()) {
-                var wBooksData = wDb.Books.ToList();
-                var wLongestBooks = wBooksData.Where(b => b.Title.Length == wBooksData.Max(book => book.Title.Length)).ToList();
+                var wLongestBooks = wDb.Books.Where(x => x.Title.Length == wDb.Books.Max(book => book.Title.Length)).ToList();
                 wLongestBooks.ForEach(book => Console.WriteLine($"最も長いタイトル: {book.Title}, 出版年: {book.PublishedYear}, 著者: {book.Author?.Name}"));
             }
             // 4.
             Console.WriteLine("\n問題4");
             using (var wDb = new BooksDbContext()) {
-                var wOldestBooks = wDb.Books.OrderBy(b => b.PublishedYear).Take(3).ToList();
+                var wOldestBooks = wDb.Books.OrderBy(x => x.PublishedYear).Take(3).ToList();
                 wOldestBooks.ForEach(book => Console.WriteLine($"タイトル: {book.Title}, 著者: {book.Author?.Name}"));
             }
             // 5.
@@ -100,20 +99,20 @@ namespace Chapter13_1_1 {
         /// </summary>
         static void InsertBooks(List<(string Title, int PublishedYear, string AuthorName)> vNewBooksData) {
             using (var wDb = new BooksDbContext()) {
-                var wExistingAuthors = wDb.Authors.ToList();
+                var wExistingAuthorNames = wDb.Authors.Select(a => a.Name).ToHashSet();
+                var wNewAuthors = vNewBooksData.Where(x => !wExistingAuthorNames.Contains(x.AuthorName)).GroupBy(x => x.AuthorName).Select(y => new Author { Name = y.Key, Birthday = null, Gender = "不明" }).ToList();
 
-                foreach (var (wTitle, wPublishedYear, wAuthorName) in vNewBooksData) {
-                    var wAuthor = wExistingAuthors.SingleOrDefault(x => x.Name == wAuthorName);
-                    if (wAuthor == null) {
-                        wAuthor = new Author { Name = wAuthorName, Birthday = null, Gender = "不明" };
-                        wDb.Authors.Add(wAuthor);
-                        wExistingAuthors.Add(wAuthor);
-                    }
+                wDb.Authors.AddRange(wNewAuthors);
 
-                    var wBook = new Book { Title = wTitle, PublishedYear = wPublishedYear, Author = wAuthor };
-                    wDb.Books.Add(wBook);
-                }
+                var wBooks = vNewBooksData.Select(x => new Book {
+                    Title = x.Title,
+                    PublishedYear = x.PublishedYear,
+                    Author = wDb.Authors.Single(y => y.Name == x.AuthorName)
+                }).ToList();
+
+                wDb.Books.AddRange(wBooks);
                 wDb.SaveChanges();
+
                 Console.WriteLine("書籍情報の追加が完了しました");
             }
         }
