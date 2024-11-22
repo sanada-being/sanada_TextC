@@ -68,18 +68,18 @@ namespace Chapter11_1_1 {
                 Console.WriteLine($"チームメンバー数: {wMostManyPlayer.TeamMembers}");
             } else {
                 Console.WriteLine("チームメンバー数が無効な値です");
-
-                // 4.
-                Console.WriteLine("問題4");
-                var wNewSportsElement = new XElement("ballsport",
-                    new XElement("name", new XAttribute("kanji", "蹴球"), "サッカー"),
-                    new XElement("teammembers", 11),
-                    new XElement("firstplayed", 1863)
-                    );
-                wXmlFile.Root.Add(wNewSportsElement);
-                wXmlFile.Save(@"..\..\NewXMLFile");
-                Console.WriteLine("新しい情報の追加が完了しました。");
             }
+            // 4.
+            Console.WriteLine("問題4");
+            var wNewSportsElement = new XElement("ballsport",
+                new XElement("name", new XAttribute("kanji", "蹴球"), "サッカー"),
+                new XElement("teammembers", 11),
+                new XElement("firstplayed", 1863)
+                );
+            wXmlFile.Root.Add(wNewSportsElement);
+            wXmlFile.Save(@"..\..\NewXMLFile");
+            Console.WriteLine("新しい情報の追加が完了しました。");
         }
     }
 }
+
