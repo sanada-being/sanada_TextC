@@ -55,14 +55,14 @@ namespace Chapter13_1_1 {
             // 3.
             Console.WriteLine("\n問題3");
             using (var wDb = new BooksDbContext()) {
-                var wLongestBooks = wDb.Books.Where(x => x.Title.Length == wDb.Books.Max(book => book.Title.Length)).ToList();
-                wLongestBooks.ForEach(book => Console.WriteLine($"最も長いタイトル: {book.Title}, 出版年: {book.PublishedYear}, 著者: {book.Author?.Name}"));
+                var wLongestBooks = wDb.Books.Where(x => x.Title.Length == wDb.Books.Max(y => y.Title.Length)).ToList();
+                wLongestBooks.ForEach(x => Console.WriteLine($"最も長いタイトル: {x.Title}, 出版年: {x.PublishedYear}, 著者: {x.Author?.Name}"));
             }
             // 4.
             Console.WriteLine("\n問題4");
             using (var wDb = new BooksDbContext()) {
                 var wOldestBooks = wDb.Books.OrderBy(x => x.PublishedYear).Take(3).ToList();
-                wOldestBooks.ForEach(book => Console.WriteLine($"タイトル: {book.Title}, 著者: {book.Author?.Name}"));
+                wOldestBooks.ForEach(x => Console.WriteLine($"タイトル: {x.Title}, 著者: {x.Author?.Name}"));
             }
             // 5.
             Console.WriteLine("\n問題5");
@@ -99,7 +99,7 @@ namespace Chapter13_1_1 {
         /// </summary>
         static void InsertBooks(List<(string Title, int PublishedYear, string AuthorName)> vNewBooksData) {
             using (var wDb = new BooksDbContext()) {
-                var wExistingAuthorNames = wDb.Authors.Select(a => a.Name).ToHashSet();
+                var wExistingAuthorNames = wDb.Authors.Select(x => x.Name).ToHashSet();
                 var wNewAuthors = vNewBooksData.Where(x => !wExistingAuthorNames.Contains(x.AuthorName)).GroupBy(x => x.AuthorName).Select(y => new Author { Name = y.Key, Birthday = null, Gender = "不明" }).ToList();
 
                 wDb.Authors.AddRange(wNewAuthors);
