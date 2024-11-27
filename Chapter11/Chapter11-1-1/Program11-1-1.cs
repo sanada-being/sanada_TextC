@@ -44,31 +44,18 @@ namespace Chapter11_1_1 {
 
             // 3.
             Console.WriteLine("問題3");
-            var wErrorMessages = new List<string>();
-            var wParsedSports = wSportsElements.Select(x => new {
-                Element = x,
-                TeamMembers = int.TryParse(x.Element("teammembers")?.Value, out int wParsedMembers) ? wParsedMembers : (int?)null
-            }).ToList();
+            var wMostPlayerSport = wSportsElements.OrderByDescending(x => {
+                if (int.TryParse(x.Element("teammembers")?.Value, out int wPlayerCount)) {
+                    return wPlayerCount;
+                } else {
 
-            foreach (var wSport in wParsedSports.Where(x => !x.TeamMembers.HasValue)) {
-                wErrorMessages.Add($"スポーツ名: {wSport.Element.Element("name")?.Value ?? "不明"} のチームメンバー数が無効です。");
-            }
-
-            if (wErrorMessages.Any()) {
-                Console.WriteLine("一部の情報に不備がありました:");
-                foreach (var wMessage in wErrorMessages) {
-                    Console.WriteLine(wMessage);
+                    Console.WriteLine($"スポーツ名: {x.Element("name")?.Value ?? "不明"} のチームメンバー数が無効です。");
+                    return 0;
                 }
-            }
+            }).First();
 
-            var wMostManyPlayer = wParsedSports.OrderByDescending(x => x.TeamMembers ?? 0).First();
+            Console.WriteLine($"最もチームメンバーが多いスポーツ: {wMostPlayerSport.Element("name")?.Value ?? "不明"}");
 
-            Console.WriteLine($"最もチームメンバーが多いスポーツ: {wMostManyPlayer.Element.Element("name")?.Value ?? "不明"}");
-            if (wMostManyPlayer.TeamMembers.HasValue) {
-                Console.WriteLine($"チームメンバー数: {wMostManyPlayer.TeamMembers}");
-            } else {
-                Console.WriteLine("チームメンバー数が無効な値です");
-            }
             // 4.
             Console.WriteLine("問題4");
             var wNewSportsElement = new XElement("ballsport",

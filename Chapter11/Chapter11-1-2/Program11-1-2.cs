@@ -25,14 +25,16 @@ namespace Chapter11_1_2 {
                 return;
             }
 
+            Console.WriteLine("新しいxmlファイル名を入力してください（例: newfile.xml）");
+            var wNewFilePath = Path.Combine(Path.GetDirectoryName(wFilePath), Console.ReadLine());
+
             var wDoc = XDocument.Load(wFilePath);
             var wWords = wDoc.Descendants("word");
 
-            var wNewDoc = new XElement("difficultkanji", wWords.Select
-                (x => new XElement("word", x.Elements().Select(y => new XAttribute(y.Name.LocalName,y.Value)))));
+            var wNewDoc = new XElement("difficultkanji", wWords.Select(x => new XElement(x.Name, x.Descendants().Select(y => new XAttribute(y.Name.LocalName, y.Value)))));
 
-            wNewDoc.Save(@"..\..\NewFile.xml");
-            Console.WriteLine("新しいファイルが作成されました");
+            wNewDoc.Save(wNewFilePath);
+            Console.WriteLine($"新しいファイルが作成されました: {wNewFilePath}");
         }
     }
 }
