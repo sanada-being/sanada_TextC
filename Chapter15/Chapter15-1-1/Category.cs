@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Chapter15_1_1 {
+﻿namespace Chapter15_1_1 {
     /// <summary>
     ///カテゴリクラス
     /// </summary>
