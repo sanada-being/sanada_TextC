@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Chapter15_1_1 {
     /// <summary>
@@ -10,11 +6,8 @@ namespace Chapter15_1_1 {
     /// </summary>
     public static class Library {
 
-
         public static IEnumerable<Category> Categories { get; private set; }
         public static IEnumerable<Book> Books { get; private set; }
-
-
 
         // 1.
         /// <summary>

@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Chapter15_1_1 {
     internal class Program {
@@ -43,13 +39,27 @@ namespace Chapter15_1_1 {
 
             // 6.
             Console.WriteLine("問題6");
-            var wGroups = Library.Books.Join(Library.Categories, x => x.CategoryId, y => y.Id, (x, y) => new { x, y }).GroupBy(z => z.y.Name).OrderBy(z => z.Key);
-            foreach (var wGroup in wGroups) {
-                Console.WriteLine($"カテゴリ名: {wGroup.Key}");
+            foreach (var wBooksByCategory in Library.Books.Join(Library.Categories, x => x.CategoryId, y => y.Id, (x, y) => new { x, y }).GroupBy(z => z.y.Name).OrderBy(z => z.Key)) {
+                Console.WriteLine($"カテゴリ名: {wBooksByCategory.Key}");
             }
 
             // 7.
-            Console.WriteLine("問題6");
+            Console.WriteLine("問題7");
+            int wDevelopmentCategoryId = Library.Categories.First(x => x.Name == "Development").Id;
+
+            IEnumerable<IGrouping<int, Book>> wBooksByYear = Library.Books.Where(x => x.CategoryId == wDevelopmentCategoryId).GroupBy(x => x.PublishedYear).OrderBy(x => x.Key);
+            foreach (var wBooksGroupedByYear in wBooksByYear) {
+                Console.WriteLine($"{wBooksGroupedByYear.Key}年に発行された書籍");
+                foreach (var wBook in wBooksGroupedByYear) {
+                    Console.WriteLine(wBook);
+                }
+            }
+
+            Console.WriteLine("問題8");
+            var wCategoriesWithManyBooks = Library.Categories.GroupJoin(Library.Books, x => x.Id, y => y.CategoryId, (x, y) => new { x.Name, Books = y }).Where(x => x.Books.Count() >= 4);
+            foreach (var wCategory in wCategoriesWithManyBooks) {
+                Console.WriteLine($"4冊以上発行されているカテゴリ名:{wCategory.Name}");
+            }
         }
     }
 }
