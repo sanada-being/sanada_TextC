@@ -13,20 +13,37 @@ namespace Chapter14_1_1 {
             Console.WriteLine("ファイルパスを入力してください");
             var wFilePath = Console.ReadLine();
 
-            if (!File.Exists(wFilePath)) {
-                Console.WriteLine("指定したファイルパスが存在しません");
+            var wFullPath = Environment.ExpandEnvironmentVariables(wFilePath);
+            if (!CheckIfTextFile(wFilePath)) {
                 return;
             }
             try {
-                var wFullPath = Environment.ExpandEnvironmentVariables(wFilePath);
-                var wLines = File.ReadAllLines(wFullPath);
-                foreach (var wLine in wLines) {
+                foreach (var wLine in File.ReadAllLines(wFullPath)) {
                     if (string.IsNullOrEmpty(wLine)) continue;
                     RunProgram(wLine);
                 }
-            } catch (Exception wEx) {
+            }
+            catch (Exception wEx) {
                 Console.WriteLine($"エラーが発生しました: {wEx.Message}");
             }
+        }
+
+        /// <summary>
+        /// .txtファイルが入力されたか判定メソッド
+        /// </summary>
+        /// <param name="vFilePath">入力されたファイルパス</param>
+        /// <returns>判定結果(true か false)</returns>
+        static bool CheckIfTextFile(string vFilePath) {
+            if (!File.Exists(vFilePath)) {
+                Console.WriteLine("指定したファイルパスが存在しません");
+                return false;
+            }
+            var wExtension = Path.GetExtension(vFilePath).ToLower();
+            if (wExtension != ".txt") {
+                Console.WriteLine("指定したファイルはテキストファイルではありません");
+                return false;
+            }
+            return true;
         }
 
         /// <summary>
@@ -34,34 +51,33 @@ namespace Chapter14_1_1 {
         /// </summary>
         /// <param name="vLine">ファイル内のプログラムのパス</param>
         static void RunProgram(string vLine) {
-            var wParts = vLine.Split(new[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
+            var wProgramAndParamsInfo = vLine.Split(new[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
 
-            if (wParts.Length == 0) {
+            if (wProgramAndParamsInfo.Length == 0) {
                 Console.WriteLine($"無効な行です: {vLine}");
                 return;
             }
-            string wProgramPath = Path.GetFullPath(wParts[0]);
+            string wProgramPath = Path.GetFullPath(wProgramAndParamsInfo[0]);
 
             if (!File.Exists(wProgramPath)) {
                 Console.WriteLine($"指定したプログラムが見つかりません: {wProgramPath}");
                 return;
             }
 
-            string wArguments = wParts.Length > 1 ? wParts[1] : string.Empty;
+            string wArguments = wProgramAndParamsInfo.Length > 1 ? wProgramAndParamsInfo[1] : string.Empty;
             try {
-                var wProcess = new Process();
-                wProcess.StartInfo.FileName = wProgramPath;
-                wProcess.StartInfo.Arguments = wArguments;
-                wProcess.Start();
-                wProcess.WaitForExit();
-                Console.WriteLine($"{wProgramPath} の実行が完了しました");
-            } catch (Exception wEx) {
+                using (var wProcess = Process.Start(wProgramPath, wArguments)) {
+                    wProcess.Start();
+                    wProcess.WaitForExit();
+                    Console.WriteLine($"{wProgramPath} の実行が完了しました");
+                }
+            }
+            catch (Exception wEx) {
                 Console.WriteLine($"エラーが発生しました: {wEx.Message}");
             }
         }
     }
 }
-
 
 
 

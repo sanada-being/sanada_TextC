@@ -23,26 +23,23 @@ namespace Chapter14_1_5 {
                 Console.WriteLine($"ZIPファイルが見つかりません: {wZipFilePath}");
                 return;
             }
-            if (!Directory.Exists(wOutputFile)) {
-                Directory.CreateDirectory(wOutputFile);
-                Console.WriteLine($"出力先フォルダを作成しました:{wOutputFile}");
-            }
+            Directory.CreateDirectory(wOutputFile);
+            Console.WriteLine($"出力先フォルダを作成しました:{wOutputFile}");
 
             try {
                 using (var wZip = ZipFile.OpenRead(wZipFilePath)) {
                     foreach (var wEntry in wZip.Entries) {
                         if (Path.GetExtension(wEntry.FullName).Equals(".txt", StringComparison.OrdinalIgnoreCase)) {
                             var wDestinationPath = Path.Combine(wOutputFile, wEntry.FullName);
+                            Directory.CreateDirectory(Path.GetDirectoryName(wDestinationPath));
 
-                            if (wDestinationPath != null) {
-                                Directory.CreateDirectory(Path.GetDirectoryName(wDestinationPath));
-                            }
                             wEntry.ExtractToFile(wDestinationPath, overwrite: true);
                         }
                     }
                 }
                 Console.WriteLine(".txtファイルの抽出を完了しました");
-            } catch (Exception wEx) {
+            }
+            catch (Exception wEx) {
                 Console.WriteLine($"エラーが発生しました:{wEx.Message}");
             }
         }

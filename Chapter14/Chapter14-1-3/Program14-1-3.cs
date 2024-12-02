@@ -7,7 +7,6 @@ namespace Chapter14_1_3 {
                             Minimum ="1900/1/1"
                             Maximum="2100/12/31"
                             MondayIsFirstDay="True" />
-
     */
     class Program {
         static void Main(string[] args) {
@@ -18,7 +17,8 @@ namespace Chapter14_1_3 {
                 Console.WriteLine($"Minimum: {wCalendarOption.CalendarOption.Minimum}");
                 Console.WriteLine($"Maximum: {wCalendarOption.CalendarOption.Maximum}");
                 Console.WriteLine($"MondayIsFirstDay: {wCalendarOption.CalendarOption.MondayIsFirstDay}");
-            } else {
+            }
+            else {
                 Console.WriteLine("設定情報が見つかりませんでした。");
             }
         }

@@ -7,11 +7,10 @@ namespace Chapter14_1_2 {
     class Program {
         static void Main(string[] args) {
             var wAssemblyInfo = Assembly.GetExecutingAssembly();
-            var wAssemblyVersion = wAssemblyInfo.GetName().Version;
-            Console.WriteLine($"{wAssemblyVersion.Major}.{wAssemblyVersion.Minor}.{wAssemblyVersion.Build}.{wAssemblyVersion.Revision}");
+            Version wAssemblyVersion = wAssemblyInfo.GetName().Version;
+            Console.WriteLine($"{wAssemblyVersion}");
 
-            var wLocation = Assembly.GetExecutingAssembly().Location;
-            var wFileVersion = FileVersionInfo.GetVersionInfo(wLocation);
+            var wFileVersion = FileVersionInfo.GetVersionInfo(wAssemblyInfo.Location);
             Console.WriteLine($"{wFileVersion.FileMajorPart}.{wFileVersion.FileMinorPart}.{wFileVersion.FileBuildPart}.{wFileVersion.FilePrivatePart}");
         }
     }
