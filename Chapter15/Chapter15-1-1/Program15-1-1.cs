@@ -15,39 +15,56 @@ namespace Chapter15_1_1 {
         8. GroupJoinメソッドを使って4冊以上発行されているカテゴリ名を求め、そのカテゴリ名をコンソールに出力してください。
         */
         static void Main(string[] args) {
+
+            var wBooks = Library.Books;
+
+            if (wBooks == null || !wBooks.Any()) {
+                Console.WriteLine("書籍が存在しません");
+                return;
+            }
+
             // 2.
-            Console.WriteLine(Library.Books.First(x => x.Price == Library.Books.Max(y => y.Price)));
+            Console.WriteLine("問題2");
+            var wMaxPrice = wBooks.Max(x => x.Price);
+            Console.WriteLine(wBooks.First(x => x.Price == wMaxPrice));
 
             // 3.
             Console.WriteLine("問題3");
-            foreach (var wYearGroup in Library.Books.GroupBy(x => x.PublishedYear).OrderBy(x => x.Key).Select(x => new { Year = x.Key, Count = x.Count() })) {
-                Console.WriteLine($"{wYearGroup.Year}年：{wYearGroup.Count}冊");
+            foreach (var wYearGroup in wBooks.GroupBy(x => x.PublishedYear).OrderBy(x => x.Key)) {
+                Console.WriteLine($"{wYearGroup.Key}年：{wYearGroup.Count()}冊");
             }
 
             // 4.
             Console.WriteLine("問題4");
-            foreach (var wBook in Library.Books.OrderByDescending(x => x.PublishedYear).ThenByDescending(x => x.Price)) {
+            foreach (var wBook in wBooks.OrderByDescending(x => x.PublishedYear).ThenByDescending(x => x.Price)) {
                 Console.WriteLine(wBook);
             }
 
             // 5.
             Console.WriteLine("問題5");
             Console.WriteLine("2016年に出版された書籍のカテゴリ一覧");
-            foreach (var wBook in Library.Books.Where(x => x.PublishedYear == 2016)) {
-                Console.WriteLine(wBook.CategoryId);
+            var wCategoryIds = wBooks.Where(x => x.PublishedYear == 2016).Select(x => x.CategoryId).Distinct();
+            var wCategoryNames = wCategoryIds.Join(Library.Categories, book => book, category => category.Id, (book, category) => category.Name);
+
+            foreach (var wCategoryName in wCategoryNames) {
+                Console.WriteLine(wCategoryName);
             }
 
             // 6.
             Console.WriteLine("問題6");
-            foreach (var wBooksByCategory in Library.Books.Join(Library.Categories, x => x.CategoryId, y => y.Id, (x, y) => new { x, y }).GroupBy(z => z.y.Name).OrderBy(z => z.Key)) {
-                Console.WriteLine($"カテゴリ名: {wBooksByCategory.Key}");
+            var wBooksByCategory = wBooks.Join(Library.Categories, x => x.CategoryId, y => y.Id, (x, y) => new { x, y }).GroupBy(z => z.y.Name).OrderBy(z => z.Key);
+            foreach (var wCategoryGroup in wBooksByCategory) {
+                Console.WriteLine($"カテゴリ名: {wCategoryGroup.Key}");
+                foreach (var wBook in wCategoryGroup) {
+                    Console.WriteLine(wBook.x.Title);
+                }
             }
 
             // 7.
             Console.WriteLine("問題7");
             int wDevelopmentCategoryId = Library.Categories.First(x => x.Name == "Development").Id;
 
-            IEnumerable<IGrouping<int, Book>> wBooksByYear = Library.Books.Where(x => x.CategoryId == wDevelopmentCategoryId).GroupBy(x => x.PublishedYear).OrderBy(x => x.Key);
+            IEnumerable<IGrouping<int, Book>> wBooksByYear = wBooks.Where(x => x.CategoryId == wDevelopmentCategoryId).GroupBy(x => x.PublishedYear).OrderBy(x => x.Key);
             foreach (var wBooksGroupedByYear in wBooksByYear) {
                 Console.WriteLine($"{wBooksGroupedByYear.Key}年に発行された書籍");
                 foreach (var wBook in wBooksGroupedByYear) {
@@ -56,8 +73,8 @@ namespace Chapter15_1_1 {
             }
 
             Console.WriteLine("問題8");
-            var wCategoriesWithManyBooks = Library.Categories.GroupJoin(Library.Books, x => x.Id, y => y.CategoryId, (x, y) => new { x.Name, Books = y }).Where(x => x.Books.Count() >= 4);
-            foreach (var wCategory in wCategoriesWithManyBooks) {
+            var wCategoriesWithManyBooks = Library.Categories.GroupJoin(Library.Books, x => x.Id, y => y.CategoryId, (x, y) => new { x.Name, Books = y });
+            foreach (var wCategory in wCategoriesWithManyBooks.Where(x => x.Books.Count() >= 4)) {
                 Console.WriteLine($"4冊以上発行されているカテゴリ名:{wCategory.Name}");
             }
         }
