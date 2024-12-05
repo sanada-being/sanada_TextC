@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0A4AD569-D563-456E-BE96-7FB8C762DE46}</ProjectGuid>
+    <ProjectGuid>{308DDFD2-A064-404B-B420-F113E3C25759}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Chapter17_1_1</RootNamespace>
-    <AssemblyName>Chapter17-1-1</AssemblyName>
+    <RootNamespace>Chapter17_1_2</RootNamespace>
+    <AssemblyName>Chapter17-1-2</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,10 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConvertingFromFullwidthToHalfwidth.cs" />
-    <Compile Include="Program17-1-1.cs" />
+    <Compile Include="Program17-1-2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TextProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
