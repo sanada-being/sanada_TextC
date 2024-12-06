@@ -1,13 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace Chapter17_1_3 {
     // 問題文はテキストP430 問題17.3を参照してください。
-  class Program {
+    class Program {
         static void Main(string[] args) {
+            if (args.Length == 0) {
+                Console.WriteLine("ファイルパスを指定してください。");
+                return;
+            }
+
+            var wFilePath = args[0];
+
+            if (!File.Exists(wFilePath)) {
+                Console.WriteLine($"指定したファイルが見つかりません{wFilePath}");
+                return;
+            }
+
+            try {
+                var wProcessor = new TextFileProcessor17_3(new ConvertingFromFullwidthToHalfwidth17_3());
+                wProcessor.Run(wFilePath);
+            }
+            catch (UnauthorizedAccessException wEx) {
+                Console.WriteLine($"アクセス権限がありません: {wEx.Message}");
+            }
+            catch (IOException wEx) {
+                Console.WriteLine($"入出力エラーが発生しました: {wEx.Message}");
+            }
+            catch (Exception wEx) {
+                Console.WriteLine($"予期しないエラーが発生しました: {wEx.Message}");
+            }
         }
     }
 }

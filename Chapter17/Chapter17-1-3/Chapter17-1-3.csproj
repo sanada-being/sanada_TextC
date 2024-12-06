@@ -43,8 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConvertingFromFullwidthToHalfwidth17-3.cs" />
+    <Compile Include="ITextFileProcessor.cs" />
     <Compile Include="Program17-1-3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextFileProcessor17-3.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

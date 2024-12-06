@@ -40,7 +40,7 @@ namespace Chapter17_1_1 {
         /// <summary>
         /// 各行に実行する処理を定義するメソッド。派生先で定義
         /// </summary>
-        /// <param name="vLine"></param>
+        /// <param name="vLine">ファイルの行</param>
         protected virtual void Execute(string vLine) { }
 
         /// <summary>
