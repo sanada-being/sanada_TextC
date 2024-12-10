@@ -14,16 +14,16 @@ namespace Chapter14_1_1 {
             var wFilePath = Console.ReadLine();
 
             var wFullPath = Environment.ExpandEnvironmentVariables(wFilePath);
-            if (!CheckIfTextFile(wFilePath)) {
+
+            if (!ExistsTextFile(wFullPath)) {
                 return;
             }
+
             try {
                 foreach (var wLine in File.ReadAllLines(wFullPath)) {
-                    if (string.IsNullOrEmpty(wLine)) continue;
                     RunProgram(wLine);
                 }
-            }
-            catch (Exception wEx) {
+            } catch (Exception wEx) {
                 Console.WriteLine($"エラーが発生しました: {wEx.Message}");
             }
         }
@@ -33,13 +33,13 @@ namespace Chapter14_1_1 {
         /// </summary>
         /// <param name="vFilePath">入力されたファイルパス</param>
         /// <returns>判定結果(true か false)</returns>
-        static bool CheckIfTextFile(string vFilePath) {
+        static bool ExistsTextFile(string vFilePath) {
             if (!File.Exists(vFilePath)) {
                 Console.WriteLine("指定したファイルパスが存在しません");
                 return false;
             }
-            var wExtension = Path.GetExtension(vFilePath).ToLower();
-            if (wExtension != ".txt") {
+
+            if (Path.GetExtension(vFilePath).ToLower() != ".txt") {
                 Console.WriteLine("指定したファイルはテキストファイルではありません");
                 return false;
             }
@@ -47,32 +47,51 @@ namespace Chapter14_1_1 {
         }
 
         /// <summary>
-        ///  ファイル内プログラム実行メソッド
+        /// 文字列をプログラムパスと引数に分割するメソッド
         /// </summary>
-        /// <param name="vLine">ファイル内のプログラムのパス</param>
-        static void RunProgram(string vLine) {
-            var wProgramAndParamsInfo = vLine.Split(new[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
-
-            if (wProgramAndParamsInfo.Length == 0) {
-                Console.WriteLine($"無効な行です: {vLine}");
-                return;
+        /// <param name="vLine">ファイルから読み込んだ行</param>
+        /// <returns>プログラムパスと引数に分割した配列</returns>
+        static string[] SplitProgramAndArguments(string vLine) {
+            if (string.IsNullOrWhiteSpace(vLine)) {
+                Console.WriteLine("指定したファイルの中身がありません");
+                return null;
             }
-            string wProgramPath = Path.GetFullPath(wProgramAndParamsInfo[0]);
+            return vLine.Split(new[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
+        }
 
-            if (!File.Exists(wProgramPath)) {
+        /// <summary>
+        /// プログラムパスが有効かを判定するメソッド
+        /// </summary>
+        /// <param name="vProgramPath">分割メソッドで分割されたプログラムパス</param>
+        /// <returns>有効なパスならtrue,それ以外はfalse</returns>
+        static bool IsProgramPathValid(string vProgramPath) {
+            string wProgramPath = Path.GetFullPath(vProgramPath);
+            return File.Exists(wProgramPath);
+        }
+
+        /// <summary>
+        /// プログラム実行メソッド
+        /// </summary>
+        /// <param name="vLine">プログラムパスと引数を含む文字列</param>
+        static void RunProgram(string vLine) {
+            string[] wProgramAndParamsInfo = SplitProgramAndArguments(vLine);
+            if (wProgramAndParamsInfo == null) return;
+
+            string wProgramPath = wProgramAndParamsInfo[0];
+
+            if (!IsProgramPathValid(wProgramPath)) {
                 Console.WriteLine($"指定したプログラムが見つかりません: {wProgramPath}");
                 return;
             }
 
             string wArguments = wProgramAndParamsInfo.Length > 1 ? wProgramAndParamsInfo[1] : string.Empty;
+
             try {
                 using (var wProcess = Process.Start(wProgramPath, wArguments)) {
-                    wProcess.Start();
                     wProcess.WaitForExit();
                     Console.WriteLine($"{wProgramPath} の実行が完了しました");
                 }
-            }
-            catch (Exception wEx) {
+            } catch (Exception wEx) {
                 Console.WriteLine($"エラーが発生しました: {wEx.Message}");
             }
         }

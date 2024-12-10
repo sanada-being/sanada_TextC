@@ -8,10 +8,10 @@ namespace Chapter14_1_2 {
         static void Main(string[] args) {
             var wAssemblyInfo = Assembly.GetExecutingAssembly();
             Version wAssemblyVersion = wAssemblyInfo.GetName().Version;
-            Console.WriteLine($"{wAssemblyVersion}");
+            Console.WriteLine($"アセンブリバージョン：{wAssemblyVersion}");
 
             var wFileVersion = FileVersionInfo.GetVersionInfo(wAssemblyInfo.Location);
-            Console.WriteLine($"{wFileVersion.FileMajorPart}.{wFileVersion.FileMinorPart}.{wFileVersion.FileBuildPart}.{wFileVersion.FilePrivatePart}");
+            Console.WriteLine("ファイル名: " + wFileVersion.FileDescription + Environment.NewLine + "ファイルバージョン: " + wFileVersion.FileVersion);
         }
     }
 }

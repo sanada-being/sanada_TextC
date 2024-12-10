@@ -31,15 +31,13 @@ namespace Chapter14_1_5 {
                     foreach (var wEntry in wZip.Entries) {
                         if (Path.GetExtension(wEntry.FullName).Equals(".txt", StringComparison.OrdinalIgnoreCase)) {
                             var wDestinationPath = Path.Combine(wOutputFile, wEntry.FullName);
-                            Directory.CreateDirectory(Path.GetDirectoryName(wDestinationPath));
 
                             wEntry.ExtractToFile(wDestinationPath, overwrite: true);
                         }
                     }
                 }
                 Console.WriteLine(".txtファイルの抽出を完了しました");
-            }
-            catch (Exception wEx) {
+            } catch (Exception wEx) {
                 Console.WriteLine($"エラーが発生しました:{wEx.Message}");
             }
         }
