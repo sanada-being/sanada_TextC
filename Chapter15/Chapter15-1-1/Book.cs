@@ -7,22 +7,22 @@
         /// <summary>
         /// 書籍タイトルを取得
         /// </summary>
-        public string Title { get; private set; }
+        public string Title { get; }
 
         /// <summary>
         /// 書籍金額を取得
         /// </summary>
-        public int Price { get; private set; }
+        public int Price { get; }
 
         /// <summary>
         /// 書籍のカテゴリIDを取得
         /// </summary>
-        public int CategoryId { get; private set; }
+        public int CategoryId { get; }
 
         /// <summary>
         /// 書籍の発行年を取得
         /// </summary>
-        public int PublishedYear { get; private set; }
+        public int PublishedYear { get; }
 
         /// <summary>
         /// コンストラクタ
@@ -44,6 +44,5 @@
         /// </summary>
         /// <returns>書籍情報の文字列表現</returns>
         public override string ToString() =>
-            $"発行年:{this.PublishedYear},カテゴリ:{this.CategoryId},価格:{this.Price},発行年:{this.PublishedYear}";
-    }
+            $"発行年:{this.PublishedYear},カテゴリ:{this.CategoryId},価格:{this.Price},発行年:{this.PublishedYear}";}
 }

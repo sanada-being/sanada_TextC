@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Chapter15_1_1 {
@@ -25,8 +24,9 @@ namespace Chapter15_1_1 {
 
             // 2.
             Console.WriteLine("問題2");
-            var wMaxPrice = wBooks.Max(x => x.Price);
-            Console.WriteLine(wBooks.First(x => x.Price == wMaxPrice));
+
+            var wMaxPriceBook = wBooks.Aggregate((vResultBook, vCurrentBook) => vResultBook.Price > vCurrentBook.Price ? vResultBook : vCurrentBook);
+            Console.WriteLine(wMaxPriceBook);
 
             // 3.
             Console.WriteLine("問題3");
@@ -43,32 +43,33 @@ namespace Chapter15_1_1 {
             // 5.
             Console.WriteLine("問題5");
             Console.WriteLine("2016年に出版された書籍のカテゴリ一覧");
-            var wCategoryIds = wBooks.Where(x => x.PublishedYear == 2016).Select(x => x.CategoryId).Distinct();
-            var wCategoryNames = wCategoryIds.Join(Library.Categories, book => book, category => category.Id, (book, category) => category.Name);
+            var wBooksWithCategoryName = wBooks.Join(Library.Categories, x => x.CategoryId, y => y.Id, (x, y) => new { Book = x, CategoryName = y.Name }).ToList();
 
+            var wCategoryNames = wBooksWithCategoryName.Where(x => x.Book.PublishedYear == 2016).Select(x => x.CategoryName).Distinct();
             foreach (var wCategoryName in wCategoryNames) {
                 Console.WriteLine(wCategoryName);
             }
 
             // 6.
             Console.WriteLine("問題6");
-            var wBooksByCategory = wBooks.Join(Library.Categories, x => x.CategoryId, y => y.Id, (x, y) => new { x, y }).GroupBy(z => z.y.Name).OrderBy(z => z.Key);
+            var wBooksByCategory = wBooksWithCategoryName.GroupBy(x => x.CategoryName).OrderBy(z => z.Key);
             foreach (var wCategoryGroup in wBooksByCategory) {
                 Console.WriteLine($"カテゴリ名: {wCategoryGroup.Key}");
                 foreach (var wBook in wCategoryGroup) {
-                    Console.WriteLine(wBook.x.Title);
+                    Console.WriteLine(wBook.Book.Title);
                 }
             }
 
             // 7.
             Console.WriteLine("問題7");
-            int wDevelopmentCategoryId = Library.Categories.First(x => x.Name == "Development").Id;
+            var wDevelopmentCategoryName = wBooksWithCategoryName.First(x => x.CategoryName == "Development").CategoryName;
 
-            IEnumerable<IGrouping<int, Book>> wBooksByYear = wBooks.Where(x => x.CategoryId == wDevelopmentCategoryId).GroupBy(x => x.PublishedYear).OrderBy(x => x.Key);
+            var wBooksByYear = wBooksWithCategoryName.Where(x => x.CategoryName == wDevelopmentCategoryName).Select(x => x.Book).GroupBy(x => x.PublishedYear).OrderBy(x => x.Key);
+
             foreach (var wBooksGroupedByYear in wBooksByYear) {
                 Console.WriteLine($"{wBooksGroupedByYear.Key}年に発行された書籍");
                 foreach (var wBook in wBooksGroupedByYear) {
-                    Console.WriteLine(wBook);
+                    Console.WriteLine(wBook.Title);
                 }
             }
 

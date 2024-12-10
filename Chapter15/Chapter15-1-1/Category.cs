@@ -7,12 +7,12 @@
         /// <summary>
         /// 書籍のカテゴリID
         /// </summary>
-        public int Id { get; private set; }
+        public int Id { get; }
 
         /// <summary>
         /// 書籍のカテゴリ名
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get; }
 
         /// <summary>
         /// コンストラクタ
