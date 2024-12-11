@@ -51,13 +51,8 @@ namespace Chapter14_1_1 {
         /// </summary>
         /// <param name="vLine">ファイルから読み込んだ行</param>
         /// <returns>プログラムパスと引数に分割した配列</returns>
-        static string[] SplitProgramAndArguments(string vLine) {
-            if (string.IsNullOrWhiteSpace(vLine)) {
-                Console.WriteLine("指定したファイルの中身がありません");
-                return null;
-            }
-            return vLine.Split(new[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
-        }
+        static string[] SplitProgramAndArguments(string vLine) =>
+             vLine.Split(new[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
 
         /// <summary>
         /// プログラムパスが有効かを判定するメソッド
@@ -74,11 +69,14 @@ namespace Chapter14_1_1 {
         /// </summary>
         /// <param name="vLine">プログラムパスと引数を含む文字列</param>
         static void RunProgram(string vLine) {
+            if (string.IsNullOrWhiteSpace(vLine)) {
+                Console.WriteLine("指定したファイルの中身が存在しません");
+                return;
+            }
+
             string[] wProgramAndParamsInfo = SplitProgramAndArguments(vLine);
-            if (wProgramAndParamsInfo == null) return;
 
             string wProgramPath = wProgramAndParamsInfo[0];
-
             if (!IsProgramPathValid(wProgramPath)) {
                 Console.WriteLine($"指定したプログラムが見つかりません: {wProgramPath}");
                 return;

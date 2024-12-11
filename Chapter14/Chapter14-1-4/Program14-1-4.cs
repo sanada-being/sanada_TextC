@@ -15,9 +15,9 @@ namespace Chapter14_1_4 {
                 var wDirectory = Path.GetDirectoryName(wFilePath);
                 Directory.CreateDirectory(wDirectory);
 
-                using (var client = new HttpClient()) {
-                    var content = await client.GetByteArrayAsync(wUrl);
-                    File.WriteAllBytes(wFilePath, content);
+                using (var wClient = new HttpClient()) {
+                    var wContent = await wClient.GetStringAsync(wUrl);
+                    File.WriteAllText(wFilePath, wContent);
                     Console.WriteLine("HTML内容をファイルに保存しました");
                 }
             }

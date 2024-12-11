@@ -17,20 +17,20 @@ namespace Chapter14_1_5 {
             }
 
             var wZipFilePath = args[0];
-            var wOutputFile = args[1];
+            var wOutputDirPath = args[1];
 
             if (!File.Exists(wZipFilePath)) {
                 Console.WriteLine($"ZIPファイルが見つかりません: {wZipFilePath}");
                 return;
             }
-            Directory.CreateDirectory(wOutputFile);
-            Console.WriteLine($"出力先フォルダを作成しました:{wOutputFile}");
+            Directory.CreateDirectory(wOutputDirPath);
+            Console.WriteLine($"出力先フォルダを作成しました:{wOutputDirPath}");
 
             try {
                 using (var wZip = ZipFile.OpenRead(wZipFilePath)) {
                     foreach (var wEntry in wZip.Entries) {
                         if (Path.GetExtension(wEntry.FullName).Equals(".txt", StringComparison.OrdinalIgnoreCase)) {
-                            var wDestinationPath = Path.Combine(wOutputFile, wEntry.FullName);
+                            var wDestinationPath = Path.Combine(wOutputDirPath, wEntry.FullName);
 
                             wEntry.ExtractToFile(wDestinationPath, overwrite: true);
                         }
