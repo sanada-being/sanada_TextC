@@ -23,8 +23,7 @@ namespace Chapter14_1_5 {
                 Console.WriteLine($"ZIPファイルが見つかりません: {wZipFilePath}");
                 return;
             }
-            Console.WriteLine($"出力先フォルダを作成しました:{wOutputDirPath}");
-
+           
             try {
                 using (var wZip = ZipFile.OpenRead(wZipFilePath)) {
                     foreach (var wEntry in wZip.Entries) {
