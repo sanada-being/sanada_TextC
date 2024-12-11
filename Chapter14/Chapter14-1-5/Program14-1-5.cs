@@ -23,7 +23,6 @@ namespace Chapter14_1_5 {
                 Console.WriteLine($"ZIPファイルが見つかりません: {wZipFilePath}");
                 return;
             }
-            Directory.CreateDirectory(wOutputDirPath);
             Console.WriteLine($"出力先フォルダを作成しました:{wOutputDirPath}");
 
             try {
@@ -31,6 +30,7 @@ namespace Chapter14_1_5 {
                     foreach (var wEntry in wZip.Entries) {
                         if (Path.GetExtension(wEntry.FullName).Equals(".txt", StringComparison.OrdinalIgnoreCase)) {
                             var wDestinationPath = Path.Combine(wOutputDirPath, wEntry.FullName);
+                            Directory.CreateDirectory(Path.GetDirectoryName(wDestinationPath));
 
                             wEntry.ExtractToFile(wDestinationPath, overwrite: true);
                         }
