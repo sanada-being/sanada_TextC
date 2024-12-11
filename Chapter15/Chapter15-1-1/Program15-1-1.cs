@@ -52,19 +52,17 @@ namespace Chapter15_1_1 {
 
             // 6.
             Console.WriteLine("問題6");
-            var wBooksByCategory = wBooksWithCategoryName.GroupBy(x => x.CategoryName).OrderBy(z => z.Key);
-            foreach (var wCategoryGroup in wBooksByCategory) {
-                Console.WriteLine($"カテゴリ名: {wCategoryGroup.Key}");
-                foreach (var wBook in wCategoryGroup) {
+            var wBooksByGroupedByCategories = wBooksWithCategoryName.GroupBy(x => x.CategoryName).OrderBy(x => x.Key);
+            foreach (var wBooksGroupedByCategory in wBooksByGroupedByCategories) {
+                Console.WriteLine($"カテゴリ名: {wBooksGroupedByCategory.Key}");
+                foreach (var wBook in wBooksGroupedByCategory) {
                     Console.WriteLine(wBook.Book.Title);
                 }
             }
 
             // 7.
             Console.WriteLine("問題7");
-            var wDevelopmentCategoryName = wBooksWithCategoryName.First(x => x.CategoryName == "Development").CategoryName;
-
-            var wBooksByYear = wBooksWithCategoryName.Where(x => x.CategoryName == wDevelopmentCategoryName).Select(x => x.Book).GroupBy(x => x.PublishedYear).OrderBy(x => x.Key);
+            var wBooksByYear = wBooksWithCategoryName.Where(x => x.CategoryName == "Development").Select(x => x.Book).GroupBy(x => x.PublishedYear).OrderBy(x => x.Key);
 
             foreach (var wBooksGroupedByYear in wBooksByYear) {
                 Console.WriteLine($"{wBooksGroupedByYear.Key}年に発行された書籍");

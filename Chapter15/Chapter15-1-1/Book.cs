@@ -43,6 +43,6 @@
         /// 書籍情報を文字列に変換
         /// </summary>
         /// <returns>書籍情報の文字列表現</returns>
-        public override string ToString() =>
-            $"発行年:{this.PublishedYear},カテゴリ:{this.CategoryId},価格:{this.Price},発行年:{this.PublishedYear}";}
+        public override string ToString() => $"発行年:{this.PublishedYear},カテゴリ:{this.CategoryId},価格:{this.Price},発行年:{this.PublishedYear}";
+    }
 }
