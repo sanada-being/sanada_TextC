@@ -17,9 +17,8 @@ namespace Chapter16_1_1 {
             }
             try {
                 using (var wReader = new StreamReader(wFilePath)) {
-                    string wLine;
-                    while (true) {
-                        wLine = await wReader.ReadLineAsync();
+                    while (!wReader.EndOfStream) {
+                        var wLine = await wReader.ReadLineAsync();
                         if (wLine == null) break;
                         Console.WriteLine(wLine);
                     }
