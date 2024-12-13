@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace Chapter17_1_2 {
     /// <summary>
@@ -9,7 +10,7 @@ namespace Chapter17_1_2 {
         /// <summary>
         /// 定義されている全コンバーターのインスタンス
         /// </summary>
-        private static ConverterBase[] _converters = new ConverterBase[] {
+        private static ConverterBase[] FConverters = new ConverterBase[] {
             new MileCoverter(),
             new KiloMeterConverter(),
         };
@@ -20,7 +21,12 @@ namespace Chapter17_1_2 {
         /// <param name="vName"></param>
         /// <returns></returns>
         public static ConverterBase GetInstance(string vName) {
-            return _converters.FirstOrDefault(x => x.IsMyUnit(vName));
+
+            var wConverter = FConverters.FirstOrDefault(x => x.IsMyUnit(vName));
+            if (wConverter == null) {
+                Console.WriteLine("無効な単位です。使用できる単位は「キロメートル」または「マイル」です。");
+            }
+            return wConverter;
         }
     }
 }

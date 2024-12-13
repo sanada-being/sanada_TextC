@@ -44,11 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConverterBase.cs" />
-    <Compile Include="ConverterFactory.cs" />
-    <Compile Include="DistanceConverter.cs" />
-    <Compile Include="KiloMeterConverter.cs" />
-    <Compile Include="MileCoverter.cs" />
+    <Compile Include="ConverterDirectory\ConverterBase.cs" />
+    <Compile Include="ConverterDirectory\ConverterFactory.cs" />
+    <Compile Include="ConverterDirectory\DistanceConverter.cs" />
+    <Compile Include="ConverterDirectory\KiloMeterConverter.cs" />
+    <Compile Include="ConverterDirectory\MileCoverter.cs" />
     <Compile Include="Program17-1-2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

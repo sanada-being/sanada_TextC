@@ -6,19 +6,23 @@ namespace Chapter17_1_1 {
     class Program {
         static void Main(string[] args) {
 
+            var wFilePath = string.Empty;
+
             if (args.Length == 0) {
                 Console.WriteLine("ファイルパスを指定してください。");
-                return;
+                Console.Write("ファイルパス:");
+                string wFilepath = Console.ReadLine();
             }
-
-            string wFilePath = args[0];
+            else {
+                wFilePath = args[0];
+            }
 
             if (!File.Exists(wFilePath)) {
                 Console.WriteLine($"指定されたファイル '{wFilePath}' は存在しません。");
                 return;
             }
             try {
-                TextProcessor.Run<ConvertingFromFullwidthToHalfwidth>(wFilePath);
+                TextProcessor.Run<ZenkakuToHankakuNumbers>(wFilePath);
             }
             catch (UnauthorizedAccessException wEx) {
                 Console.WriteLine($"アクセス権限がありません: {wEx.Message}");

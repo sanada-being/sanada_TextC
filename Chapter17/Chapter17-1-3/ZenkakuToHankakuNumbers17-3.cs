@@ -5,7 +5,7 @@ namespace Chapter17_1_3 {
     /// <summary>
     /// 全角数字を半角数字に変換するクラス
     /// </summary>
-    class ConvertingFromFullwidthToHalfwidth17_3 : ITextFileProcessor {
+    class ZenkakuToHankakuNumbers17_3 : ITextFileProcessor {
 
         /// <summary>
         /// 初期化処理を実行するメソッド

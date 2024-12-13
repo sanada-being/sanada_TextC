@@ -5,20 +5,24 @@ namespace Chapter17_1_3 {
     // 問題文はテキストP430 問題17.3を参照してください。
     class Program {
         static void Main(string[] args) {
+
+            var wFilePath = string.Empty;
+
             if (args.Length == 0) {
                 Console.WriteLine("ファイルパスを指定してください。");
-                return;
+                Console.Write("ファイルパス:");
+                string wFilepath = Console.ReadLine();
             }
-
-            var wFilePath = args[0];
+            else {
+                wFilePath = args[0];
+            }
 
             if (!File.Exists(wFilePath)) {
                 Console.WriteLine($"指定したファイルが見つかりません{wFilePath}");
                 return;
             }
-
             try {
-                var wProcessor = new TextFileProcessor17_3(new ConvertingFromFullwidthToHalfwidth17_3());
+                var wProcessor = new TextFileProcessor17_3(new ZenkakuToHankakuNumbers17_3());
                 wProcessor.Run(wFilePath);
             }
             catch (UnauthorizedAccessException wEx) {

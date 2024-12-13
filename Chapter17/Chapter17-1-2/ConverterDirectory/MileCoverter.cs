@@ -1,4 +1,6 @@
-﻿namespace Chapter17_1_2 {
+﻿using System;
+
+namespace Chapter17_1_2 {
     /// <summary>
     /// マイルに変換するクラス
     /// </summary>
@@ -22,6 +24,5 @@
         /// 距離の単位（マイル)
         /// </summary>
         public override string UnitName { get { return "マイル"; } }
-
     }
 }

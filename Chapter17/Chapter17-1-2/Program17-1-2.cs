@@ -5,8 +5,8 @@ namespace Chapter17_1_2 {
     class Program {
         static void Main(string[] args) {
             while (true) {
-                var wFrom = GetConverter("変換元の単位を入力してください");
-                var wTo = GetConverter("変換先の単位を入力してください");
+                var wFrom = GetConverter("変換元の単位を入力してください　使用出来る単位:キロメートル　マイル");
+                var wTo = GetConverter("変換先の単位を入力してください　使用出来る単位:キロメートル　マイル");
                 var wDistance = GetDistance(wFrom);
 
                 var wConverter = new DistanceConverter(wFrom, wTo);
@@ -26,10 +26,10 @@ namespace Chapter17_1_2 {
             return wValue.Value;
         }
 
-        static ConverterBase GetConverter(string vMassege) {
+        static ConverterBase GetConverter(string vMessege) {
             ConverterBase wConverter = null;
             do {
-                Console.WriteLine(vMassege + " => ");
+                Console.WriteLine(vMessege + " => ");
                 var wUnit = Console.ReadLine();
                 wConverter = ConverterFactory.GetInstance(wUnit);
             } while (wConverter == null);

@@ -1,4 +1,6 @@
-﻿namespace Chapter17_1_2 {
+﻿using System;
+
+namespace Chapter17_1_2 {
     /// <summary>
     /// キロメートルに変換するクラス
     /// </summary>
@@ -10,7 +12,7 @@
         /// <param name="vName">指定した単位名</param>
         /// <returns>キロメートルの単位ならtrueを返す</returns>
         public override bool IsMyUnit(string vName) {
-            return vName.ToLower() == "kirometer " || vName == this.UnitName;
+            return vName.ToLower() == "kirometer" || vName == this.UnitName;
         }
 
         /// <summary>
@@ -24,4 +26,3 @@
         public override string UnitName { get { return "キロメートル"; } }
     }
 }
-
