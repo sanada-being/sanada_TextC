@@ -7,7 +7,7 @@ namespace Chapter17_1_2 {
             while (true) {
                 var wFrom = GetConverter("変換元の単位を入力してください　使用出来る単位:キロメートル　マイル");
                 var wTo = GetConverter("変換先の単位を入力してください　使用出来る単位:キロメートル　マイル");
-                var wDistance = GetDistance(wFrom);
+                var wDistance = ReadDistance(wFrom);
 
                 var wConverter = new DistanceConverter(wFrom, wTo);
                 var wResult = wConverter.Convert(wDistance);
@@ -15,25 +15,30 @@ namespace Chapter17_1_2 {
             }
         }
 
-        static double GetDistance(ConverterBase vFrom) {
-            double? wValue = null;
-            do {
-                Console.WriteLine($"変換したい距離を数字で(単位:{vFrom.UnitName})入力してください");
-                var wLine = Console.ReadLine();
-                double wTemp;
-                wValue = double.TryParse(wLine, out wTemp) ? (double?)wTemp : null;
-            } while (wValue == null);
-            return wValue.Value;
+        static double ReadDistance(ConverterBase vFrom) {
+            Console.WriteLine($"変換したい距離を数字で(単位:{vFrom.UnitName})入力してください");
+            double wValue;
+            string wLine = Console.ReadLine();
+            while (!double.TryParse(wLine, out wValue)) {
+                Console.WriteLine("無効な入力です。再度変換したい距離を入力してください。");
+                wLine = Console.ReadLine();
+            }
+            return wValue;
         }
 
-        static ConverterBase GetConverter(string vMessege) {
-            ConverterBase wConverter = null;
-            do {
-                Console.WriteLine(vMessege + " => ");
-                var wUnit = Console.ReadLine();
-                wConverter = ConverterFactory.GetInstance(wUnit);
-            } while (wConverter == null);
-            return wConverter;
+        static ConverterBase GetConverter(string vMessage) {
+            Console.WriteLine(vMessage);
+
+            while (true) {
+                Console.Write("=>");
+                string wUnit = Console.ReadLine();
+                ConverterBase wConverter = ConverterFactory.GetInstance(wUnit);
+
+                if (wConverter != null) {
+                    return wConverter;
+                }
+                Console.WriteLine("再度単位名を入力してください");
+            }
         }
     }
 }

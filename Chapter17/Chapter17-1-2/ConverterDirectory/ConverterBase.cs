@@ -24,19 +24,15 @@
         /// <summary>
         /// メートルから変換するメソッド
         /// </summary>
-        /// <param name="vMeter"></param>
-        /// <returns></returns>
-        public double FromMeter(double vMeter) {
-            return vMeter / this.Ratio;
-        }
+        /// <param name="vMeter">処理を行うメートル単位の距離</param>
+        /// <returns>メートルから基準の単位に変換した距離</returns>
+        public double FromMeter(double vMeter) => vMeter / this.Ratio;
 
         /// <summary>
         /// メートルへの変換をするメソッド
         /// </summary>
-        /// <param name="vFeet"></param>
-        /// <returns></returns>
-        public double ToMeter(double vFeet) {
-            return vFeet * this.Ratio;
-        }
+        /// <param name="vFeet">基準の単位の距離</param>
+        /// <returns>基準の単位からメートルに変換した距離</returns>
+        public double ToMeter(double vFeet) => vFeet * this.Ratio;
     }
 }

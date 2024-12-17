@@ -16,7 +16,7 @@ namespace Chapter17_1_3 {
         /// </summary>
         /// <param name="vProcessor">テキストファイル処理クラスのインスタンス</param>
         public TextFileProcessor17_3(ITextFileProcessor vProcessor) {
-            this.FFileProcessor = vProcessor;
+            FFileProcessor = vProcessor;
         }
 
         /// <summary>

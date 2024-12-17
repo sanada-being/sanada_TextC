@@ -18,8 +18,8 @@ namespace Chapter17_1_2 {
         /// <summary>
         /// 指定した単位のコンバーターのインスタンスを取得するメソッド
         /// </summary>
-        /// <param name="vName"></param>
-        /// <returns></returns>
+        /// <param name="vName">指定した単位名</param>
+        /// <returns>対応するコンバーターのインスタンス</returns>
         public static ConverterBase GetInstance(string vName) {
 
             var wConverter = FConverters.FirstOrDefault(x => x.IsMyUnit(vName));

@@ -8,12 +8,12 @@
         /// <summary>
         /// 変換元の単位コンバーター
         /// </summary>
-        public ConverterBase From { get; private set; }
+        public ConverterBase From { get; }
 
         /// <summary>
         /// 変換先の単位コンバーター
         /// </summary>
-        public ConverterBase To { get; private set; }
+        public ConverterBase To { get; }
 
         /// <summary>
         /// 単位を変換するコンストラクタ

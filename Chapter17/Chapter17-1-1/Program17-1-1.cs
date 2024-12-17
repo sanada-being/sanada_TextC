@@ -11,7 +11,7 @@ namespace Chapter17_1_1 {
             if (args.Length == 0) {
                 Console.WriteLine("ファイルパスを指定してください。");
                 Console.Write("ファイルパス:");
-                string wFilepath = Console.ReadLine();
+                wFilePath = Console.ReadLine();
             }
             else {
                 wFilePath = args[0];

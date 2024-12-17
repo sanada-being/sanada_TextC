@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Chapter17_1_2 {
+﻿namespace Chapter17_1_2 {
     /// <summary>
     /// マイルに変換するクラス
     /// </summary>
@@ -11,18 +9,16 @@ namespace Chapter17_1_2 {
         /// </summary>
         /// <param name="vName">指定した単位名</param>
         /// <returns>マイルの単位ならtrueを返す</returns>
-        public override bool IsMyUnit(string vName) {
-            return vName.ToLower() == "mile" || vName == this.UnitName;
-        }
+        public override bool IsMyUnit(string vName) => vName.ToLower() == "mile" || vName == this.UnitName;
 
         /// <summary>
         /// メートルとの比率
         /// </summary>
-        protected override double Ratio { get { return 1609.344; } }
+        protected override double Ratio => 1609.344;
 
         /// <summary>
         /// 距離の単位（マイル)
         /// </summary>
-        public override string UnitName { get { return "マイル"; } }
+        public override string UnitName => "マイル";
     }
 }
