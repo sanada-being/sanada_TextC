@@ -25,19 +25,9 @@ namespace Chapter16_1_2 {
                         Console.WriteLine(wAsynchronizedFile.FullName);
                 }
             }
-            catch (FileNotFoundException wEx) {
-                Console.WriteLine("ファイルが見つかりません: " + wEx.Message);
-            }
-            catch (UnauthorizedAccessException wEx) {
-                Console.WriteLine("アクセス権限がありません: " + wEx.Message);
-            }
-            catch (IOException wEx) {
-                Console.WriteLine("I/Oエラーが発生しました: " + wEx.Message);
-            }
             catch (Exception wEx) {
-                Console.WriteLine("予期しないエラーが発生しました: " + wEx.Message);
+                ExceptionHandler.HandleException(wEx);
             }
-
             wSerialProcessingTime.Stop();
             Console.WriteLine($"直列処理時間：{wSerialProcessingTime.ElapsedMilliseconds}ms");
         }
