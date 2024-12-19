@@ -19,7 +19,6 @@ namespace Chapter16_1_1 {
                 using (var wReader = new StreamReader(wFilePath)) {
                     while (!wReader.EndOfStream) {
                         var wLine = await wReader.ReadLineAsync();
-                        if (wLine == null) break;
                         Console.WriteLine(wLine);
                     }
                     Console.WriteLine("ファイルの読み込みが完了しました");
